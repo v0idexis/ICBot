@@ -1,0 +1,28 @@
+{
+  "name": "blender",
+  "version": "1.0.0",
+  "description": "trading bot ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harsh4999/Trading_Bot.git"
+  },
+  "author": "blender",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harsh4999/Trading_Bot/issues"
+  },
+  "homepage": "https://github.com/Harsh4999/Trading_Bot#readme",
+  "devDependencies": {
+    "@adiwajshing/baileys": "^3.5.2",
+    "async": "^3.2.1",
+    "axios": "^0.21.4",
+    "baileys": "^1.1.1",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "pg": "^8.7.1"
+  }
+}
