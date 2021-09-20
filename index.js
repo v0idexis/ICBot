@@ -60,7 +60,7 @@ const getGroupAdmins = (participants) => {
 	}
 	return admins
 }
-
+const prefix = 'harsh';
 //MAIN Function
 async function main(){
 
@@ -181,6 +181,7 @@ async function main(){
 			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
             if (isCmd && isGroup) console.log('[COMMAND]', command, '[FROM]', sender.split('@')[0], '[IN]', groupName)
             console.log("Done working");
+            reply(`hello`);
         }catch(e){
             console.log('Error : %s', e)
         } 
