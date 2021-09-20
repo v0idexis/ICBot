@@ -60,7 +60,7 @@ const getGroupAdmins = (participants) => {
 	}
 	return admins
 }
-const prefix = 'harsh';
+const prefix = '/';
 //MAIN Function
 async function main(){
 
@@ -133,14 +133,12 @@ async function main(){
                 audio,
                 product
             } = MessageType
-            body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
+           
+             body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
             const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
             const args = body.trim().split(/ +/).slice(1)
             const isCmd = body.startsWith(prefix)
 
-            errors = {
-                admin_error: '_❌ ERROR: Admin permission failed! ❌_'
-            }
 
             const botNumber = conn.user.jid
             const isGroup = from.endsWith('@g.us')
