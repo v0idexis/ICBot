@@ -181,7 +181,12 @@ async function main(){
 			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
             if (isCmd && isGroup) console.log('[COMMAND]', command, '[FROM]', sender.split('@')[0], '[IN]', groupName)
             console.log("Done working");
-            reply(`hello`);
+           
+            switch(command){
+                case 'hello':{
+                    reply(`hello`);
+                }
+            }
         }catch(e){
             console.log('Error : %s', e)
         } 
