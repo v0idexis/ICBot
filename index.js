@@ -192,7 +192,7 @@ async function main(){
                     break;
                 }
                 case 'Cry':{
-                  const s =  await getPriceCrypto();
+                  const s =  await getPriceCrypto('gg');
                   console.log(s);
                    break;
                 }
