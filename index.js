@@ -28,6 +28,7 @@ const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
+const {daa}=require('./Features/stock')
 //Function section
 async function fetchauth() {
     try{
@@ -196,6 +197,15 @@ async function main(){
                    reply(`${s1}`);
                    break;
                 }
+
+                case 'stocks':
+const sT=await daa(args[0]);
+reply(`*STOCK* :-_${args[0]}_
+ *Currency* :-_${sT.currency}_                   
+ *Price*:-_${sT.price}_                   `
+                    )
+                    break;
+
                 case 'crypto-mmi':{
                     //sending fear chart
                     await conn.sendMessage(
