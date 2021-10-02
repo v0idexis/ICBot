@@ -188,6 +188,7 @@ async function main(){
                     const s = await help;
                     console.log(s);
                     reply(`${s}`);
+                    reply(`${s.str}`);
                 }
             }
         }catch(e){
