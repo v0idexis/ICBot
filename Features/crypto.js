@@ -4,9 +4,8 @@ module.exports.getPriceCrypto = async (coin) => {
     method: "get",
     url: "https://public.coindcx.com/market_data/current_prices",
   };
-  await axios
-    .request(mainconfig)
-    .then((res) => {
+  const t = "";
+  await axios.request(mainconfig).then((res) => {
       console.log("here");
       var cc = coin;
       var cc1 = cc.toUpperCase() + "INR";
@@ -19,14 +18,14 @@ module.exports.getPriceCrypto = async (coin) => {
         var w = `*${cc2}* = $${Number(kprice)}
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
-        console.log(w);
-        return ('nahi hoga');
-      } else {
-        return "Coin not found";
+        t=""+w;
+      }else{
+        t=""+w;
       }
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log("not working");
-      return "not working";
-    });
+      t=""+w;
+     });
+     return t;
+
 };
