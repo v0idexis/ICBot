@@ -200,17 +200,15 @@ async function main(){
 
 
                 case 'stocks':
-const sT=await daa(args[0]);
-reply(`*STOCK* :-_${args[0]}_
- *Currency* :-_${sT.currency}_                   
- *Price*:-_${sT.price}_                   `
+                    const sT=await daa(args[0]);
+                    reply(`*STOCK* :-_${args[0]}_
+                    *Currency* :-_${sT.currency}_                   
+                    *Price*:-_${sT.price}_                   `
                     )
                     break;
 
-                case 'crypto-mmi':{
-                    //sending fear chart
+                
                 case 'crypto_mmi':{
-
                     await conn.sendMessage(
                         from, 
                         { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
