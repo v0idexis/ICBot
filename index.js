@@ -179,7 +179,6 @@ async function main(){
 			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
 			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
             if (isCmd && isGroup) console.log('[COMMAND]', command, '[FROM]', sender.split('@')[0], '[IN]', groupName)
-            console.log("Done working");
            
             switch(command){
                 case 'hello':{
@@ -193,7 +192,8 @@ async function main(){
                     break;
                 }
                 case 'Cry':{
-                   await getPriceCrypto();
+                  const s =  await getPriceCrypto();
+                  console.log(s);
                    break;
                 }
             }
