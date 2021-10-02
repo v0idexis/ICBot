@@ -186,8 +186,8 @@ async function main(){
                 }
                 case 'help':{
                     const s = await help;
-                    
-                    reply(`${JSON.stringify(s)}`);
+                    console.log(s);
+                    reply(`${s.message}`);
                 }
             }
         }catch(e){
