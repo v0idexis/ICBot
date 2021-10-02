@@ -58,7 +58,7 @@ Greed zone suggests that investors are acting greedy in the market, but the acti
 High extreme greed zone (>80) suggests to be cautious in opening fresh positions as markets are overbought and likely to turn downwards.`;
           }
   }).catch((err)=>{
-      fearIndex=`Not Working`;
+      fearIndex=`Not working`;
   })
   return fearIndex;
 }
