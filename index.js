@@ -27,8 +27,7 @@ const {
 const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
-const {getPriceCrypto} = require('./Features/crypto');
-const {CryptoMmi} = require('./Features/cm');
+const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
 //Function section
 async function fetchauth() {
     try{
