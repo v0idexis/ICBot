@@ -200,15 +200,12 @@ async function main(){
                 case 'crypto_mmi':{
                     await conn.sendMessage(
                         from, 
-                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` },
+                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
                         MessageType.image, 
-                        { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
-                    ).then(async ()=>{
-                        const s2 = await CryptoMmi();
-                        reply(`${s2}`);
-                    }).catch(()=>{
-                        console.log("here");
-                    })
+                        { mimetype: Mimetype.png, caption: "~Blender👽",quoted: mek }
+                    )
+                    const s2 = await CryptoMmi();
+                    reply(`${s2}`);
                     
                     break;
                 }
