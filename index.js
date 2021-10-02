@@ -196,7 +196,7 @@ async function main(){
                    const lomda=await getPriceCrypto(coin);
                    console.log(lomda)
                    conn.sendMessage(from,lomda,MessageType.text);
-                     console.log("ho guya");
+                     console.log("ho guyaa");
                    break;
                 }
             }
