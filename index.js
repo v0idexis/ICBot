@@ -185,7 +185,7 @@ async function main(){
                     reply(`hello`);
                 }
                 case 'help':{
-                    const s = await help();
+                    const s = await help;
                     console.log(s);
                     reply(`${s}`);
                 }
