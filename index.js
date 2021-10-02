@@ -187,7 +187,7 @@ async function main(){
                 case 'help':{
                     const s = await help;
                     console.log(s);
-                    reply(`${s.message}`);
+                    reply(`${s.help}`);
                 }
             }
         }catch(e){
