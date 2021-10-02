@@ -197,21 +197,10 @@ async function main(){
                    reply(`${s1}`);
                    break;
                 }
-
-
-                case 'stocks':{
-                    const sT=await daaa(args[0]);
-                    reply(`*STOCK* :-_${args[0]}_
-                    *Currency* :-_${sT.currency}_                   
-                    *Price*:-_${sT.price}_                   `
-                    )
-                    break;
-                }        
-                
                 case 'crypto_mmi':{
                     await conn.sendMessage(
                         from, 
-                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
+                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` },
                         MessageType.image, 
                         { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
                     );
@@ -219,6 +208,12 @@ async function main(){
                     reply(`${s2}`);
                     break;
                 }
+
+                case 'stocks':{
+                    const s3=await daaa(args[0]);
+                    reply(`${s3}`)
+                    break;
+                }        
             }
         }catch(e){
             console.log('Error : %s', e)
