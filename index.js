@@ -191,12 +191,14 @@ async function main(){
                     conn.sendMessage(from,s,MessageType.text);
                     break;
                 }
-                case 'ry':{
+                case 'crypto':{
                     var coin = args[0];
-                   const lomda=await getPriceCrypto(coin);
-                   reply(`${lomda}`);
-                    console.log("ho guyaa");
+                   const s1=await getPriceCrypto(coin);
+                   reply(`${s1}`);
                    break;
+                }
+                case 'crypto-mmi':{
+                    
                 }
             }
         }catch(e){
