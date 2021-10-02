@@ -20,11 +20,10 @@ module.exports.getPriceCrypto = async (coin) => {
                         *${cc3}* = ${Number(bPrice)}`;
         t=""+w;
       }else{
-        t=""+w;
+          t = "coin not found";
       }
     }).catch((err) => {
       console.log("not working");
-      t=""+w;
      });
      return t;
 
