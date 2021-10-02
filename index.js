@@ -187,8 +187,6 @@ async function main(){
                 case 'help':{
                     const s = await help();
                     console.log(s);
-                    reply(s);
-                    reply(help());
                     conn.sendMessage(from,s,MessageType.text);
                 }
             }
