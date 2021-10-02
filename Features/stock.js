@@ -6,4 +6,4 @@ const daaa = async (sto) => {
 }; // { currency: 'USD', price: 132.05 }
 module.exports={
 	daaa
-      }
+}
