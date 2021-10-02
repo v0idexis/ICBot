@@ -17,17 +17,16 @@
     "url": "https://github.com/Harsh4999/Trading_Bot/issues"
   },
   "homepage": "https://github.com/Harsh4999/Trading_Bot#readme",
-
   "dependencies": {
     "@adiwajshing/baileys": "^3.5.2",
     "async": "^3.2.1",
-    "axios": "^0.21.4",
     "baileys": "^1.1.1",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "axios": "^0.22.0"
   },
   "devDependencies": {
-  
+    
   }
 }

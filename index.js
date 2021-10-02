@@ -27,6 +27,7 @@ const {
 const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
+const {getPriceCrypto} = require('./Features/crypto');
 
 //Function section
 async function fetchauth() {
@@ -183,11 +184,17 @@ async function main(){
             switch(command){
                 case 'hello':{
                     reply(`hello`);
+                    break;
                 }
                 case 'help':{
                     const s = await help();
                     console.log(s);
                     conn.sendMessage(from,s,MessageType.text);
+                    break;
+                }
+                case 'Cry':{
+                   await getPriceCrypto();
+                   break;
                 }
             }
         }catch(e){
