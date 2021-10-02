@@ -14,11 +14,14 @@ module.exports.getPriceCrypto = async (coin) => {
       var kprice = res.data[cc2];
       var iPrice = res.data[cc1];
       var bPrice = res.data[cc3];
+      
       if (kprice) {
+        console.log('if block');
         var w = `*${cc2}* = $${Number(kprice)}
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
 
+        
         t=''+w;
         console.log(t);
         
@@ -27,6 +30,7 @@ module.exports.getPriceCrypto = async (coin) => {
       }
     }).catch((err) => {
       console.log("not working");
+      t="catch"
      });
      return t;
 };
