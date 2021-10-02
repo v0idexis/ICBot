@@ -26,7 +26,7 @@ const {
     // LOAD DB CONNECTION
 const db = require('./database');
 const fs = require('fs')
-
+const help = require('./Features/help');
 
 //Function section
 async function fetchauth() {
@@ -65,7 +65,7 @@ const prefix = '/';
 async function main(){
 
      // LOADING SESSION
-     const conn = new WAConnection()
+     const conn = new WAConnection();
      conn.logger.level = 'warn'
      conn.on('qr', () => {console.log('SCAN THE ABOVE QR CODE TO LOGIN!')})
      await fetchauth(); //GET LOGIN DATA
@@ -183,6 +183,9 @@ async function main(){
             switch(command){
                 case 'hello':{
                     reply(`hello`);
+                }
+                case 'help':{
+                    reply(help);
                 }
             }
         }catch(e){
