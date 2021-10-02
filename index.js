@@ -201,7 +201,7 @@ async function main(){
                     await conn.sendMessage(
                         from, 
                         { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
-                        MessageType.image, 
+                        image, 
                         { mimetype: Mimetype.png, caption: "~Blender👽",quoted: mek }
                     )
                     const s2 = await CryptoMmi();
