@@ -197,7 +197,7 @@ async function main(){
                    reply(`${s1}`);
                    break;
                 }
-                case 'cryptoMmi':{
+                case 'crypto_mmi':{
                     //sending fear chart
                     // await conn.sendMessage(
                     //     from, 
