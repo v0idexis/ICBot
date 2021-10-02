@@ -26,7 +26,7 @@ const {
     // LOAD DB CONNECTION
 const db = require('./database');
 const fs = require('fs')
-const help = require('./Features/help');
+const {help} = require('./Features/help');
 
 //Function section
 async function fetchauth() {
@@ -185,10 +185,11 @@ async function main(){
                     reply(`hello`);
                 }
                 case 'help':{
-                    const s = await help;
+                    const s = await help();
                     console.log(s);
-                    reply(`${s}`);
-                    reply(`${s.str}`);
+                    reply(s);
+                    reply(help());
+                    conn.sendMessage(from,s,MessageType.text);
                 }
             }
         }catch(e){
