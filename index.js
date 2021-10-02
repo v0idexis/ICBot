@@ -193,9 +193,11 @@ async function main(){
                 }
                 case 'ry':{
                     const coin = args[0];
-                    const  t = await getPriceCrypto(coin);
-                    reply(`${t}`);
-                    //conn.sendMessage(from,t,MessageType.text);
+                     await getPriceCrypto(coin).then((res)=>{
+                        reply(`${res}`);
+                    }).catch((err)=>{
+                        reply(`not working`);
+                    });
                    break;
                 }
             }
