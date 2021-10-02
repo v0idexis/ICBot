@@ -28,7 +28,7 @@ const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
-const {daa}=require('./Features/stock')
+const {daaa}=require('./Features/stock')
 //Function section
 async function fetchauth() {
     try{
@@ -199,22 +199,22 @@ async function main(){
                 }
 
 
-                case 'stocks':
-                    const sT=await daa(args[0]);
+                case 'stocks':{
+                    const sT=await daaa(args[0]);
                     reply(`*STOCK* :-_${args[0]}_
                     *Currency* :-_${sT.currency}_                   
                     *Price*:-_${sT.price}_                   `
                     )
                     break;
-
+                }        
                 
                 case 'crypto_mmi':{
-                    // await conn.sendMessage(
-                    //     from, 
-                    //     { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
-                    //     MessageType.image, 
-                    //     { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
-                    // );
+                    await conn.sendMessage(
+                        from, 
+                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
+                        MessageType.image, 
+                        { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
+                    );
                     const s2 = await CryptoMmi();
                     reply(`${s2}`);
                     break;
