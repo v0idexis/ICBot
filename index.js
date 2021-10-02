@@ -210,7 +210,7 @@ async function main(){
                 }
 
                 case 'stocks':{
-                    const s3=await daaa(args[0]);
+                    const s3=await daaa(args[0].toUpperCase());
                     reply(`${s3}`)
                     break;
                 }        
