@@ -191,9 +191,10 @@ async function main(){
                     conn.sendMessage(from,s,MessageType.text);
                     break;
                 }
-                case 'Cry':{
-                  const s =  await getPriceCrypto('gg');
-                  console.log(s);
+                case 'ry':{
+
+                  const t =  await getPriceCrypto('gg');
+                  console.log(t);
                    break;
                 }
             }
