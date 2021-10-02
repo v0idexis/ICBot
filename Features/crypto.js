@@ -4,7 +4,7 @@ module.exports.getPriceCrypto = async (coin) => {
     method: "get",
     url: "https://public.coindcx.com/market_data/current_prices",
   };
-  const t = "t";
+  var t = "t";
   await axios.request(mainconfig).then((res) => {
       console.log("here");
       var cc = coin;
