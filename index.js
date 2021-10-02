@@ -202,10 +202,9 @@ async function main(){
                         from, 
                         {url:'https://alternative.me/crypto/fear-and-greed-index.png'},
                         image, 
-                        {mimetype: Mimetype.png, caption:"~ICBot"})
+                        {mimetype: Mimetype.png, caption:"~ICBot"});
                     const s2 = await CryptoMmi();
                     reply(`${s2}`);
-                    
                     break;
                 }
 
