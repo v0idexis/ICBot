@@ -20,7 +20,7 @@ module.exports.getPriceCrypto = async (coin) => {
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
         console.log(w);
-        return w;
+        return ('nahi hoga');
       } else {
         return "Coin not found";
       }
