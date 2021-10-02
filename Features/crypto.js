@@ -14,7 +14,7 @@ module.exports.getPriceCrypto = async (coin) =>{
         var iPrice = res.data[cc1]
         var bPrice=  res.data[cc3]
         if (kprice) {
-            const w = `*${cc2}* = $${Number(kprice)}
+            var w = `*${cc2}* = $${Number(kprice)}
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
             console.log(w);
