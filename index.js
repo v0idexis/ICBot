@@ -185,7 +185,8 @@ async function main(){
                     reply(`hello`);
                 }
                 case 'help':{
-                    reply(help);
+                    const s = await help;
+                    reply(`${s}`);
                 }
             }
         }catch(e){
