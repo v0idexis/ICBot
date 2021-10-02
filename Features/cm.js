@@ -4,7 +4,8 @@ module.exports.CryptoMmi = async ()=>{
             method:'GET',
             url:'https://api.alternative.me/fng/?limit=1'
         }
-        let fearIndex;
+        console.log('here');
+        var fearIndex;
         await axios.request(config).then((res)=>{
                 if(res<=20){
                     fearIndex=`Current MMI = ${res}
@@ -19,8 +20,10 @@ module.exports.CryptoMmi = async ()=>{
                     fearIndex=`Current MMI=${res}
     High extreme greed zone (>80) suggests to be cautious in opening fresh positions as markets are overbought and likely to turn downwards.`;
                 }
+                console.log('here1');
         }).catch((err)=>{
             fearIndex=`Not working`;
+            console.log('www')
         })
         return fearIndex;
 }
