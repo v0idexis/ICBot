@@ -4,7 +4,6 @@ module.exports.getPriceCrypto = async (coin) =>{
         method: 'get',
         url: 'https://public.coindcx.com/market_data/current_prices'
     }
-    console.log("here1");
     await axios.request(mainconfig).then((res)=>{
         console.log('here');
         var cc = coin;
@@ -18,6 +17,7 @@ module.exports.getPriceCrypto = async (coin) =>{
             const w = `*${cc2}* = $${Number(kprice)}
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
+            console.log(w);
             return w;
         } else {
             return 'Coin not found';

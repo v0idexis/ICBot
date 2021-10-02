@@ -193,9 +193,10 @@ async function main(){
                 }
                 case 'ry':{
 
-                  const t =  await getPriceCrypto('BTC');
-                  console.log(t);
-                  conn.sendMessage(from,t,MessageType.text);
+                  await getPriceCrypto('BTC').then((res)=>{
+                    conn.sendMessage(from,res,MessageType.text);
+                  });
+                  
                    break;
                 }
             }
