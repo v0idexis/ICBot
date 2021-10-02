@@ -203,9 +203,13 @@ async function main(){
                         { url: `https://alternative.me/crypto/fear-and-greed-index.png` },
                         MessageType.image, 
                         { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
-                    );
-                    const s2 = await CryptoMmi();
-                    reply(`${s2}`);
+                    ).then(()=>{
+                        const s2 = await CryptoMmi();
+                        reply(`${s2}`);
+                    }).catch(()=>{
+                        console.log("here");
+                    })
+                    
                     break;
                 }
 
