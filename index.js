@@ -198,6 +198,7 @@ async function main(){
                    break;
                 }
 
+
                 case 'stocks':
 const sT=await daa(args[0]);
 reply(`*STOCK* :-_${args[0]}_
@@ -208,6 +209,8 @@ reply(`*STOCK* :-_${args[0]}_
 
                 case 'crypto-mmi':{
                     //sending fear chart
+                case 'crypto_mmi':{
+
                     await conn.sendMessage(
                         from, 
                         { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
