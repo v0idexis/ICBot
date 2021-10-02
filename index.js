@@ -193,7 +193,8 @@ async function main(){
                 }
                 case 'ry':{
                     const coin = args[0];
-                     reply(getPriceCrypto(coin));
+                   const lomda=await getPriceCrypto(coin);
+                   conn.sendMessage(from,lomda,MessageType.text);
                      console.log("ho guya");
                    break;
                 }
