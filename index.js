@@ -27,8 +27,7 @@ const {
 const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
-const {getPriceCrypto} = require('./Features/crypto');
-
+const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
 //Function section
 async function fetchauth() {
     try{
@@ -198,7 +197,16 @@ async function main(){
                    break;
                 }
                 case 'crypto-mmi':{
-                    
+                    //sending fear chart
+                    await conn.sendMessage(
+                        from, 
+                        { url: `https://alternative.me/crypto/fear-and-greed-index.png` }, // send directly from remote url!
+                        MessageType.image, 
+                        { mimetype: Mimetype.png, caption: "~ICBot",quoted: mek }
+                    );
+                    const s2 = await CryptoMmi();
+                    reply(`${s2}`);
+                    break;
                 }
             }
         }catch(e){
