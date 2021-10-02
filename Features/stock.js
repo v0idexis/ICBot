@@ -14,3 +14,4 @@ const daaa = async (sto) => {
 module.exports={
 	daaa
 }
+
