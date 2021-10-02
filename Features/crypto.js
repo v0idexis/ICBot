@@ -18,7 +18,7 @@ module.exports.getPriceCrypto = async (coin) => {
         var w = `*${cc2}* = $${Number(kprice)}
                         *${cc1}* = ₹${Number(iPrice)}
                         *${cc3}* = ${Number(bPrice)}`;
-        t=""+w;
+        t=''+w;
       }else{
           t = "coin not found";
       }
