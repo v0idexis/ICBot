@@ -27,9 +27,8 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "pg": "^8.7.1",
+    "qr-image": "^3.2.0",
     "yahoo-stock-prices": "^1.1.0"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }
