@@ -1,4 +1,5 @@
 //WEB SERVER
+require('dotenv').config();
 const express = require('express')
 const server = express()
 const port = process.env.PORT || 8000;
@@ -28,7 +29,10 @@ const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
-const {daaa}=require('./Features/stock')
+const {daaa}=require('./Features/stock');
+const weather = require('./Features/weather')
+const {exr,currencycodes} = require('./Features/exchangerate');
+const { gold, silver } = require('./Features/gold_silver');
 //Function section
 async function fetchauth() {
     try{
@@ -212,7 +216,33 @@ async function main(){
                     const s3=await daaa(args[0].toUpperCase());
                     reply(`${s3}`)
                     break;
-                }        
+                }     
+			     case 'weather':{
+                    const arguement = args[0]
+                    const getweather = (await weather(arguement));
+                    reply(getweather)
+                    break;
+                    }
+                    case 'exr':{
+                        if(!args[0]) reply(' provide atleast two arguement')
+                        if(args[0] && !args[1]) reply(' provide secound arguement')
+                        const arguement = args
+                        const data = (await exr(arguement))
+                        reply(data)
+                        break;
+                        }
+                        case 'currencycodes':{
+                            reply(currencycodes)
+                            break;
+                            }
+                        case 'goldpr':{
+                            reply((await gold()))
+                                break;
+                                }
+                        case 'silverpr':{
+                            reply((await silver()))
+                                break;               
+                                    }
             }
         }catch(e){
             console.log('Error : %s', e)
