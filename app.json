@@ -1,0 +1,19 @@
+{
+    "name": "ICBot",
+    "description": "Lightweight WhatsApp Bot",
+    "repository": "https://github.com/v0idexis/ICBot/tree/temp",
+    "logo": "https://camo.githubusercontent.com/26019afd6757a7d4f2cfe0792a0109c3ac1bc34561402371c34aaafbe66fe5ba/68747470733a2f2f692e696d6775722e636f6d2f3474524b4f637a2e706e67",
+    "keywords": ["bot", "whatsapp", "whatsapp-bot"],
+  
+      "env": {
+          "DATABASE_URL": {
+              "description": "A secret String for Postgres Connection.(Required)"
+          }
+      },
+  
+  "buildpacks": [
+        {
+          "url": "heroku/nodejs"
+        }
+      ]
+  }
