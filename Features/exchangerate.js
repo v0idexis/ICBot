@@ -1,11 +1,7 @@
 const axios = require('axios')
 
 
-
 let exr = async(args) =>{
-
-let handler = async(m, { conn, args  , usedPrefix, command }) =>{
-
     if(!args[0]) throw ' provide atleast two arguemnet'
     if(!args[1]) throw ' provide atleast two arguemnet'
     
@@ -27,36 +23,18 @@ let api = axios.get(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANG
  let timeZone = Realtime_EXR['7. Time Zone']
  let bidPrice = Realtime_EXR['8. Bid Price']
  let AskPrice = Realtime_EXR['9. Ask Price']
-// console.log(args)
-// console.log(Data)
-// console.log(Realtime_EXR)
-// console.log(Data)
-
 
 let msg = ` Exchange Rate : ${From_currencyCODE} to ${to_currencyCODE} \n exchanageRate is ${exchangeRate} ${to_currencyfullname}
 last refreshed : ${lastRefreshed}`
-return msg
-// conn.reply(m.chat,` Exchange Rate : ${From_currencyCODE} to ${to_currencyCODE} \n exchanageRate is ${exchangeRate} ${to_currencyfullname}
-//                    last refreshed : ${lastRefreshed}`,m)    
+return msg 
 } catch {
     // console.log(e)
-    return `wrong country code see currencycodes`
-
-conn.reply(m.chat,` Exchange Rate : ${From_currencyCODE} to ${to_currencyCODE} \n exchanageRate is ${exchangeRate} ${to_currencyfullname}
-                   last refreshed : ${lastRefreshed}`,m)    
-} catch {
-    // console.log(e)
-    throw `wrong country code see ${usedPrefix}currencycodes`
-
+    return `wrong country code see /currencycodes`
 
 }
 
 
-
-
-
 }
-
 
 
 let currencycodes = `
@@ -241,10 +219,3 @@ ZWL Zimbabwean Dollar
 
 
 module.exports ={ exr,currencycodes}
-
-handler.help = ['exchangeRate']
-handler.tags = ['internet']
-handler.command = /^exr$/i
-module.exports = handler
-
-
