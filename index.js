@@ -1,6 +1,8 @@
 //WEB SERVER
+require('dotenv').config();
 const express = require('express')
-const server = express()
+const server = express();
+const qrImage = require('qr-image');
 const port = process.env.PORT || 8000;
 server.get('/', (req, res) => {res.send('Blender server running...')})
 server.listen(port, () => {
@@ -28,7 +30,11 @@ const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
-const {daaa}=require('./Features/stock')
+const {daaa}=require('./Features/stock');
+const weather = require('./Features/weather');
+const path = require('path');
+const {exr,currencycodes} = require('./Features/exchangerate');
+const { gold, silver } = require('./Features/gold_silver');
 //Function section
 async function fetchauth() {
     try{
@@ -68,6 +74,13 @@ async function main(){
      // LOADING SESSION
      const conn = new WAConnection();
      conn.logger.level = 'warn'
+     conn.on('qr', (qr) => {console.log('SCAN THE ABOVE QR CODE TO LOGIN!')
+     const qr_code = qrImage.image(qr, { type: 'png' });
+     qr_code.pipe(fs.createWriteStream('QRcode.png'));})
+     conn.browserDescription[0] = 'ICBOT - Trading Bot'
+     server.get('/auth',(req,res)=>{
+        res.sendFile(path.join(__dirname,'QRcode.png'));
+     })
      conn.on('qr', () => {console.log('SCAN THE ABOVE QR CODE TO LOGIN!')})
      await fetchauth(); //GET LOGIN DATA
      if (auth_row_count == 1) {conn.loadAuthInfo(auth_obj)}
@@ -212,7 +225,33 @@ async function main(){
                     const s3=await daaa(args[0].toUpperCase());
                     reply(`${s3}`)
                     break;
-                }        
+                }     
+			     case 'weather':{
+                    const arguement = args[0]
+                    const getweather = (await weather(arguement));
+                    reply(getweather)
+                    break;
+                    }
+                    case 'exr':{
+                        if(!args[0]) reply(' provide atleast two arguement')
+                        if(args[0] && !args[1]) reply(' provide secound arguement')
+                        const arguement = args
+                        const data = (await exr(arguement))
+                        reply(data)
+                        break;
+                        }
+                        case 'currencycodes':{
+                            reply(currencycodes)
+                            break;
+                            }
+                        case 'goldpr':{
+                            reply((await gold()))
+                                break;
+                                }
+                        case 'silverpr':{
+                            reply((await silver()))
+                                break;               
+                                    }
             }
         }catch(e){
             console.log('Error : %s', e)
