@@ -1,34 +1,31 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-var url_cboevix = "https://finance.yahoo.com/quote/%5EVIX/";
-var url_indvix = "https://www.moneycontrol.com/indian-indices/india-vix-36.html";
+var url_cboevix = "https://www.investing.com/indices/volatility-s-p-500";
+var url_indvix = "https://www.investing.com/indices/india-vix";
 
-const scrapeVOL = async() => {
+const scrapeVOL = async () => {
   try {
-      
     const cboeurl = await axios.get(url_cboevix);
     const $cb = cheerio.load(cboeurl.data);
-    const cboevix = $cb('[class="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"]').text();
-    const cboevixmove = $cb('[class="Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px) C($negativeColor)"]').text();
-    // console.log("CBOE VIX:\n",cboevix,cboevixmove)
-const CBOE = "CBOE VIX:\n" + cboevix + cboevixmove;
-    console.log("\n")
+    const cboevix = $cb('[data-test="instrument-price-last"]').text();
+    const cboevixmove = $cb('[data-test="instrument-price-change"]').text();
+    const cboevixperc = $cb('[data-test="instrument-price-change-percent"]').text();
+    const CBOEVIX = "CBOE VIX:\n" + cboevix + " " + cboevixmove + " " + cboevixperc;
 
     const indurl = await axios.get(url_indvix);
     const $in = cheerio.load(indurl.data);
-    const indvix = $in('[id="sp_val"]').text();
-    // .attr("style");
-    const indvixmove = $in('[id="sp_ch_prch"]').text().trim();
-    // console.log("INDIA VIX:\n",indvix,indvixmove)
-    const INDIAVIX = "INDIA VIX:\n" + indvix + indvixmove;
-    return [CBOE,INDIAVIX]
+    const indvix = $in('[data-test="instrument-price-last"]').text();
+    const indvixmove = $in('[data-test="instrument-price-change"]').text();
+    const indvixperc = $in('[data-test="instrument-price-change-percent"]').text();
+    const INDIAVIX = "INDIA VIX:\n" + indvix + " " + indvixmove + " " + indvixperc;
 
+    return [CBOEVIX, INDIAVIX];
   } catch (err) {
     console.error(err);
-    console.log("Volatility is Down")
+    console.log("Volatility is Down");
   }
-}
+};
 
 scrapeVOL();
 
