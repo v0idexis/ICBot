@@ -32,6 +32,7 @@ const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
 const {daaa}=require('./Features/stock');
 const weather = require('./Features/weather');
+const {scrapeVOL} = require('./Features/getvol');
 const path = require('path');
 const {exr,currencycodes} = require('./Features/exchangerate');
 const { gold, silver } = require('./Features/gold_silver');
@@ -252,6 +253,12 @@ async function main(){
                             reply((await silver()))
                                 break;               
                                     }
+			    case 'vol':{
+                                   const CV = (await scrapeVOL())[0]
+                                   const IV = (await scrapeVOL())[1]
+                                   reply(`${CV}\n${IV}`)          
+                                     break;               
+                               }                
             }
         }catch(e){
             console.log('Error : %s', e)
