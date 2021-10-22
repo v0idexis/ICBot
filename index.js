@@ -30,7 +30,7 @@ const db = require('./database');
 const fs = require('fs')
 const {help} = require('./Features/help');
 const {getPriceCrypto,CryptoMmi} = require('./Features/crypto');
-const {daaa}=require('./Features/stock');
+const {daaa,stockMMI}=require('./Features/stock');
 const weather = require('./Features/weather');
 const {scrapeVOL} = require('./Features/getvol');
 const path = require('path');
@@ -224,9 +224,14 @@ async function main(){
 
                 case 'stocks':{
                     const s3=await daaa(args[0].toUpperCase());
-                    reply(`${s3}`)
+                    reply(`${s3}`);
                     break;
                 }     
+                case 'stock_mmi':{
+                    const s4= await stockMMI();
+                    reply(`${s4}`);
+                    break;
+                }
 			     case 'weather':{
                     const arguement = args[0]
                     const getweather = (await weather(arguement));
