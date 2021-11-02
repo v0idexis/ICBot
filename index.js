@@ -36,6 +36,9 @@ const {scrapeVOL} = require('./Features/getvol');
 const path = require('path');
 const {exr,currencycodes} = require('./Features/exchangerate');
 const { gold, silver } = require('./Features/gold_silver');
+const {getnews} = require('./Features/news');
+const getgainers = require('./Features/gainers');
+const chalk = require('chalk');
 //Function section
 async function fetchauth() {
     try{
@@ -78,6 +81,8 @@ async function main(){
      conn.on('qr', (qr) => {console.log('SCAN THE ABOVE QR CODE TO LOGIN!')
      const qr_code = qrImage.image(qr, { type: 'png' });
      qr_code.pipe(fs.createWriteStream('QRcode.png'));})
+	    conn.version = [3, 3234, 9]; //needed
+
      conn.browserDescription[0] = 'ICBOT - Trading Bot'
      server.get('/auth',(req,res)=>{
         res.sendFile(path.join(__dirname,'QRcode.png'));
@@ -109,20 +114,29 @@ async function main(){
          db.query('commit;')
          console.log('Login data updated!')
      }
+	     console.log(chalk.blueBright(`CONNECTED AS ${conn.user.name}`));
 
-     conn.on('group-participants-update', async (anu) => {
-		try {
-			const mdata = await conn.groupMetadata(anu.jid)
-			console.log(anu)
-			if (anu.action == 'add') {
-				num = anu.participants[0]
-				num_split = `${num.split('@s.whatsapp.net')[0]}`
-                console.log('Joined: ', num)
-			}
-		} catch (e) {
-			console.log(e)
-		}
-	})
+     conn.on('group-participants-update', async (event) => {
+    try {
+        const mdata = await conn.groupMetadata(event.jid)
+     const   num = event.participants[0]
+       const num_split = `${num.split('@s.whatsapp.net')[0]}`
+        if (event.action == 'add') {
+         console.log('Joined: ', num);
+            console.log(num,num_split,event.participants);
+         conn.sendMessage(event.jid,"welcome"+ '@'+num_split,MessageType.text,{contextInfo :{ mentionedJid: [...event.participants] }})
+        
+        
+        } else if (event.action == 'remove'){
+            let text = `*@${event.participants[0].split('@')[0]}* has left the chat 👋`
+            conn.sendMessage(event.jid,text,MessageType.text,{contextInfo :{ mentionedJid: [num] }});
+
+
+        }
+    } catch (e) {
+        console.log(e)
+    }
+});
 
     conn.on('chat-update', async (mek) => {
         try {
@@ -164,6 +178,8 @@ async function main(){
             const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
             const isGroupAdmins = groupAdmins.includes(sender) || false
+	    const username = conn.contacts[sender].notify || conn.contacts[sender].short
+
 
             const reply = (teks) => {
                 conn.sendMessage(from, teks, text, {
@@ -192,19 +208,77 @@ async function main(){
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
 			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
 			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-            if (isCmd && isGroup) console.log('[COMMAND]', command, '[FROM]', sender.split('@')[0], '[IN]', groupName)
+            if (isCmd && isGroup) console.log(chalk.blue((`[${conn.user.name}]`).toUpperCase()),chalk.green('[COMMAND]'), chalk.yellow(command), '[FROM]', chalk.green(username), '[IN]',chalk.cyanBright (groupName))
+            if(!isCmd) console.log(`${chalk.blueBright('[MSG]')} from ${chalk.green(username)} in ${chalk.cyanBright(groupMetadata.subject||'[DM]')}`);
+		
+		 if(mek.message.buttonsResponseMessage){
+            const ButtonResponse = JSON.parse(content).buttonsResponseMessage.selectedButtonId || ''
+                        console.log(ButtonResponse)
+                        switch(ButtonResponse){
+                            case 'icbot':
+    
+                            reply('hellow response from button 1')
+                                break;
+                                case 'icbot 2':
+                                    reply('hii response from butt 2')
+                                    break;
+                           }
+
+                        console.log('bottuon yes')
+
+                    }else if(mek.message.listResponseMessage){
+
+                const listResponse = JSON.parse(content).listResponseMessage.title
+                        switch(listResponse){
+                            case 'R1':
+                                reply('hellow r1')
+                                break;
+                            case 'R2':
+                                reply('elluw r2')
+                                break;
+                        }
+
+
+                        console.log('list button yes')
+                    }
+		
+		
+	 cron.schedule('*/6 * * * * *', async() => {                   
+		 
+                const grp =  fs.readFileSync('./grpjids.json')
+                const items = JSON.parse(grp)
+               console.log(items)
+               for(let i =0; i<items.length;i++){
+                conn.sendMessage(items[i],(await getgainers()),text)
+               }
+            })
+
            
             switch(command){
                 case 'hello':{
                     reply(`hello`);
                     break;
                 }
+	        case 'hi':{                
+                      reply(`HI ${username}`)
+                     break;
+                        }
                 case 'help':{
                     const s = await help();
-                    console.log(s);
                     conn.sendMessage(from,s,MessageType.text);
                     break;
                 }
+			    
+                    case 'news':{
+                          const news =   (await getnews())[0]
+                          const imgurl =  (await getnews())[1]
+                                    await conn.sendMessage(
+                                        from, 
+                                        {url:imgurl},
+                                        image, 
+                                        {mimetype: Mimetype.png, caption:news +"\n~ICBot"});
+                                            break;                 
+                                                }
                 case 'crypto':{
                     var coin = args[0];
                    const s1=await getPriceCrypto(coin);
@@ -263,7 +337,60 @@ async function main(){
                                    const IV = (await scrapeVOL())[1]
                                    reply(`${CV}\n${IV}`)          
                                      break;               
-                               }                
+                               }               
+			  case 'button':{  // button example
+                    const rows = [
+                        {title: 'R1', description: "Hello it's description 1", rowId:"rowid1"},
+                        {title: 'R2', description: "Hello it's description 2", rowId:"rowid2"}
+                       ]
+                       const r = [
+                        {title: 'R1', rowId:"rowid1"},
+                        {title: 'R2', rowId:"rowid2"}
+                       ]
+                       
+                       const sections = [{title: "Shmmmm 1", rows: rows},{title: "Shmmmm 2", rows: r}]
+                       
+                       const button = {
+                        buttonText: 'help i guess!',
+                        description: "Hello it's list message",
+                        sections: sections,
+                        listType: 1
+                       }
+                       
+                       conn.sendMessage(from, button, MessageType.listMessage);
+                    break;
+                }
+			    case 'listbutton' : {
+                    const buttons = [
+                        {buttonId : 'icbot',buttonText : {displayText : 'butttn'},type : 1},
+                        {buttonId : 'icbot 2',buttonText : {displayText : 'butttn 2'},type : 1}
+                    ]
+                    const buttonMessage = {
+                        contentText : 'hi it\'s button',
+                        footerText : 'ICBot',
+                        buttons : buttons,
+                        headerType : 1
+                    }
+                    conn.sendMessage(from,buttonMessage,MessageType.buttonsMessage)
+                    break;
+                }
+	case 'eval' :{
+                         let out;
+            console.log(args.toString().replace(/\,/g,' '))
+            const output = eval(args.toString().replace(/\,/g,' ')) || 'Executed JS Successfully!'
+            console.log(output)
+            out = JSON.stringify(output)
+                     reply(out)
+                        break;
+                        }
+			     case 'enable':{
+            const value = fs.readFileSync('./grpjids.json');
+            const obj = JSON.parse(value);
+                        obj.push(from);
+                fs.writeFileSync("grpjids.json",JSON.stringify(obj));
+                reply('successfully enabled');
+                       break;
+                         }
             }
         }catch(e){
             console.log('Error : %s', e)
