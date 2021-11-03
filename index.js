@@ -398,3 +398,131 @@ async function main(){
     });
 }
 main();
+
+/////////////// ADMIN COMMANDS \\\\\\\\\\\\\\\
+
+                case 'add':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (args.length < 1) return;
+                    var num = '';
+                    if (args.length > 1) {
+                        for (let j = 0; j < args.length; j++) {
+                            num = num + args[j]
+                        }
+                        num = `${num.replace(/ /g, '')}@s.whatsapp.net`
+                    } else {
+                        num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
+                    }
+                    if (num.startsWith('+')) {
+                        num = `${num.split('+')[1]}`
+                    }
+                    const response = await conn.groupAdd(from, [num])
+                    get_status = `${num.split('@s.whatsapp.net')[0]}`
+                    get_status = response[`${get_status}@c.us`];
+                    if (get_status == 400) {
+                        reply('_❌ ERROR: Invalid number! ❌_');
+                    }
+                    if (get_status == 403) {
+                        reply('_❌ ERROR: Number has privacy on adding group! ❌_');
+                    }
+                    if (get_status == 408) {
+                        reply('_❌ ERROR: Number has left the group recently! ❌_');
+                    }
+                    if (get_status == 409) {
+                        reply('_❌ ERROR: Number is already exists! ❌_');
+                    }
+                    if (get_status == 500) {
+                        reply('_❌ ERROR: Group is currently full! ❌_');
+                    }
+                    if (get_status == 200) {
+                        reply('_✔ SUCCESS: Number added to group! ✔_');
+                    }
+                    break;
+
+                case 'kick':
+                case 'remove':
+                case 'ban':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return;
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+                    if (groupAdmins.includes(`${mentioned}`) == true) return;
+                    if (mentioned.length > 1) {
+                        return;
+                    } else {
+                        conn.groupRemove(from, mentioned)
+                    }
+                    break;
+
+                case 'promote':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return;
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+                    if (groupAdmins.includes(`${mentioned}`) == true) return;
+                    if (mentioned.length > 1) {
+                        return;
+                    } else {
+                        conn.groupMakeAdmin(from, mentioned)
+                    }
+                    break;
+
+                case 'demote':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('_⚠ USAGE: /demote <@mention> ⚠_');
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+                    if (groupAdmins.includes(`${mentioned}`) == false) return;
+                    if (mentioned.length > 1) {
+                        return;
+                    } else {
+                        conn.groupDemoteAdmin(from, mentioned)
+                    }
+                    break;
+
+                case 'chat':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (args.length < 1) return;
+                    if (args[0] == 'on') {
+                        conn.groupSettingChange(from, GroupSettingChange.messageSend, false);
+                    } else if (args[0] == 'off') {
+                        conn.groupSettingChange(from, GroupSettingChange.messageSend, true);
+                    } else {
+                        return;
+                    }
+                    break;
+
+                case 'rename':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    if (!isBotGroupAdmins) return reply(errors.admin_error);
+                    if (args.length < 1) return;
+                    get_subject = '';
+                    for (i = 0; i < args.length; i++) {
+                        get_subject = get_subject + args[i] + ' ';
+                    }
+                    conn.groupUpdateSubject(from, get_subject);
+                    break;
+
+                case 'removebot':
+                    if (!isGroup) return;
+                    if (!isGroupAdmins) return;
+                    conn.groupLeave(from)
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (e) {
+            console.log('Error : %s', e)
+        }
+    })
+}
+main()
