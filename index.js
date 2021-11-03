@@ -242,8 +242,8 @@ async function main(){
                         console.log('list button yes')
                     }
 		
-		
-	 cron.schedule('*/6 * * * * *', async() => {                   
+		// daily 9:30 pm
+	 cron.schedule('30 21 * * *', async() => {                   
 		 
                 const grp =  fs.readFileSync('./grpjids.json')
                 const items = JSON.parse(grp)
