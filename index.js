@@ -391,17 +391,10 @@ async function main(){
                 reply('successfully enabled');
                        break;
                          }
-            }
-        }catch(e){
-            console.log('Error : %s', e)
-        } 
-    });
-}
-main();
 
 /////////////// ADMIN COMMANDS \\\\\\\\\\\\\\\
 
-                case 'add':
+        case 'add':
                     if (!isGroup) return;
                     if (!isGroupAdmins) return;
                     if (!isBotGroupAdmins) return reply(errors.admin_error);
@@ -516,13 +509,10 @@ main();
                     if (!isGroupAdmins) return;
                     conn.groupLeave(from)
                     break;
-
-                default:
-                    break;
             }
-        } catch (e) {
+        }catch(e){
             console.log('Error : %s', e)
-        }
-    })
+        } 
+    });
 }
-main()
+main();
