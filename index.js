@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const server = express();
 const qrImage = require("qr-image");
-const cron = require("node-cron");
 const port = process.env.PORT || 8000;
 server.get("/", (req, res) => {
   res.send("ICBot server running...");
@@ -42,6 +41,7 @@ const { gold, silver } = require("./Features/gold_silver");
 const { getnews } = require("./Features/news");
 const getgainers = require("./Features/gainers");
 const chalk = require("chalk");
+const cron = require("node-cron");
 //Function section
 async function fetchauth() {
   try {
@@ -301,15 +301,15 @@ async function main() {
       }
 
       // daily 9:30 pm
-      //  cron.schedule('30 21 * * *', async() => {
+       cron.schedule('30 21 * * *', async() => {
 
-      //             const grp =  fs.readFileSync('./grpjids.json')
-      //             const items = JSON.parse(grp)
-      //            console.log(items)
-      //            for(let i =0; i<items.length;i++){
-      //             conn.sendMessage(items[i],(await getgainers()),text)
-      //            }
-      //         })
+                  const grp =  fs.readFileSync('./grpjids.json')
+                  const items = JSON.parse(grp)
+                 console.log(items)
+                 for(let i =0; i<items.length;i++){
+                  conn.sendMessage(items[i],(await getgainers()),text)
+                 }
+              })
 
       switch (command) {
         case "hello": {
