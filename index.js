@@ -384,6 +384,9 @@ async function main(){
                      reply(out)
                         break;
                         }
+                     case 'news':{
+                                    const news =   (await getnews())[0]
+                                    const imgurl =  (await getnews())[1]
 			     case 'enable':{
             const value = fs.readFileSync('./grpjids.json');
             const obj = JSON.parse(value);
