@@ -143,13 +143,13 @@ async function main(){
         try {
             if (!mek.hasNewMessage) return
             mek = JSON.parse(JSON.stringify(mek)).messages[0]
-            if (!mek.messages) return
+            if (!mek.message) return
             if (mek.key && mek.key.remoteJid == 'status@broadcast') return
             if (mek.key.fromMe) return
-            const content = JSON.stringify(mek.messages)
+            const content = JSON.stringify(mek.message)
             global.prefix
             const from = mek.key.remoteJid
-            const type = Object.keys(mek.messages)[0]
+            const type = Object.keys(mek.message)[0]
             const {
                 text,
                 extendedText,
@@ -164,7 +164,7 @@ async function main(){
                 product
             } = MessageType
            
-             body = (type === 'conversation' && mek.messages.conversation.startsWith(prefix)) ? mek.messages.conversation : (type == 'imageMessage') && mek.messages.imageMessage.caption.startsWith(prefix) ? mek.messages.imageMessage.caption : (type == 'videoMessage') && mek.messages.videoMessage.caption.startsWith(prefix) ? mek.messages.videoMessage.caption : (type == 'extendedTextMessage') && mek.messages.extendedTextMessage.text.startsWith(prefix) ? mek.messages.extendedTextMessage.text : ''
+             body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
             const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
             const args = body.trim().split(/ +/).slice(1)
             const isCmd = body.startsWith(prefix)
@@ -212,7 +212,7 @@ async function main(){
             if (isCmd && isGroup) console.log(chalk.blue((`[${conn.user.name}]`).toUpperCase()),chalk.green('[COMMAND]'), chalk.yellow(command), '[FROM]', chalk.green(username), '[IN]',chalk.cyanBright (groupName))
             if(!isCmd) console.log(`${chalk.blueBright('[MSG]')} from ${chalk.green(username)} in ${chalk.cyanBright(groupMetadata.subject||'[DM]')}`);
 		
-		 if(mek.messages.buttonsResponseMessage){
+		 if(mek.message.buttonsResponseMessage){
             const ButtonResponse = JSON.parse(content).buttonsResponseMessage.selectedButtonId || ''
                         console.log(ButtonResponse)
                         switch(ButtonResponse){
@@ -227,7 +227,7 @@ async function main(){
 
                         console.log('bottuon yes')
 
-                    }else if(mek.messages.listResponseMessage){
+                    }else if(mek.message.listResponseMessage){
 
                 const listResponse = JSON.parse(content).listResponseMessage.title
                         switch(listResponse){
@@ -441,8 +441,8 @@ async function main(){
                     if (!isGroup) return;
                     if (!isGroupAdmins) return;
                     if (!isBotGroupAdmins) return reply(errors.admin_error);
-                    if (mek.messages.extendedTextMessage === undefined || mek.messages.extendedTextMessage === null) return;
-                    mentioned = mek.messages.extendedTextMessage.contextInfo.mentionedJid
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return;
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
                     if (groupAdmins.includes(`${mentioned}`) == true) return;
                     if (mentioned.length > 1) {
                         return;
@@ -455,8 +455,8 @@ async function main(){
                     if (!isGroup) return;
                     if (!isGroupAdmins) return;
                     if (!isBotGroupAdmins) return reply(errors.admin_error);
-                    if (mek.messages.extendedTextMessage === undefined || mek.messages.extendedTextMessage === null) return;
-                    mentioned = mek.messages.extendedTextMessage.contextInfo.mentionedJid
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return;
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
                     if (groupAdmins.includes(`${mentioned}`) == true) return;
                     if (mentioned.length > 1) {
                         return;
@@ -469,8 +469,8 @@ async function main(){
                     if (!isGroup) return;
                     if (!isGroupAdmins) return;
                     if (!isBotGroupAdmins) return reply(errors.admin_error);
-                    if (mek.messages.extendedTextMessage === undefined || mek.messages.extendedTextMessage === null) return reply('_⚠ USAGE: /demote <@mention> ⚠_');
-                    mentioned = mek.messages.extendedTextMessage.contextInfo.mentionedJid
+                    if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('_⚠ USAGE: /demote <@mention> ⚠_');
+                    mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
                     if (groupAdmins.includes(`${mentioned}`) == false) return;
                     if (mentioned.length > 1) {
                         return;
