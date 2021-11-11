@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express')
 const server = express();
 const qrImage = require('qr-image');
-var cron = require('node-cron');
+const cron = require('node-cron');
 const port = process.env.PORT || 8000;
 server.get('/', (req, res) => {res.send('Blender server running...')})
 server.listen(port, () => {
