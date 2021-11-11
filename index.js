@@ -5,7 +5,7 @@ const server = express();
 const qrImage = require('qr-image');
 const cron = require('node-cron');
 const port = process.env.PORT || 8000;
-server.get('/', (req, res) => {res.send('Blender server running...')})
+server.get('/', (req, res) => {res.send('ICBot server running...')})
 server.listen(port, () => {
     console.clear()
     console.log('\nWeb-server running!\n')

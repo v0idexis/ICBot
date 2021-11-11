@@ -1,7 +1,7 @@
 {
-  "name": "blender",
+  "name": "ICBot",
   "version": "1.0.0",
-  "description": "trading bot ",
+  "description": "Bot for Traders and Investors",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Harsh4999/Trading_Bot.git"
+    "url": "git+https://github.com/v0idexis/ICBot.git"
   },
-  "author": "blender",
+  "author": "ICBot",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Harsh4999/Trading_Bot/issues"
+    "url": "https://github.com/v0idexis/ICBot/issues"
   },
-  "homepage": "https://github.com/Harsh4999/Trading_Bot#readme",
+  "homepage": "https://github.com/v0idexis/ICBot/#readme",
   "dependencies": {
     "@adiwajshing/baileys": "^3.5.2",
     "async": "^3.2.1",
