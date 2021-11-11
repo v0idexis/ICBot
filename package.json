@@ -22,12 +22,15 @@
     "async": "^3.2.1",
     "axios": "^0.22.0",
     "baileys": "^1.1.1",
+    "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "node-cron": "^3.0.0",
     "pg": "^8.7.1",
     "qr-image": "^3.2.0",
+    "wa-sticker-formatter": "^4.0.14",
     "yahoo-stock-prices": "^1.1.0"
   },
   "devDependencies": {}
