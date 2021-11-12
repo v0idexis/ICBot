@@ -19,7 +19,7 @@
 | Demote     | Demotes the tagged user as a standard participant from an admin if he's one. Can work only when commanding user is himself a group admin |
 | Remove     | Removes the tagged user from the group, can only work if the bot is an admin and the one commanding this too                             |
 | Everyone   | Tags all the users in a group chat.                                                                                                      |
-|                Welcome and farewell are manual.                                                                                                       |
+| Events     |    Welcome and farewell are manual.                                                                                                       |
 
 ## 🎗 Self-Hosting
  
