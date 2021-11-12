@@ -31,4 +31,5 @@
 ## CONTRIBUTION
 If you run into any issues while using the bot or if you want to request any changes or new features, open a new issue to let us know.
 
-If you would like to contribute to the development and profitability of the bot, simply open a PR or let us know .THANK YOU.
+If you would like to contribute to the development and profitability of the bot, simply open a PR or let us know 
+.THANK YOU.
