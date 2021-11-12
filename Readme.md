@@ -1,3 +1,17 @@
+## Features
+| Bot         | usage                                         |
+| ----------- | --------------------------------------------- |
+| Help        | shows u all listed commands                   |
+| crypto      | sends u crypto values.                        |
+| Exchangerate| Gives exchange rates of different countries   |                |
+| Weather     | Gives weather report of a place               |
+| gold_silver | Gives you current gold and silver rates       |
+| Gainers     | Gives you list of current top gainers.        |
+| Stock       | Gives you stock market details.               |
+| Getvol.     | Gives you voltality details.                  |
+| Random user | Gives you information about random users.     |
+| News        | Gives you business news                       |
+
 ## 🎗 Self-Hosting
  
  #### **Hosting on Heroku**
