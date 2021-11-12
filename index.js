@@ -301,15 +301,14 @@ async function main() {
       }
 
       // daily 9:30 pm
-       cron.schedule('30 21 * * *', async() => {
-
-                  const grp =  fs.readFileSync('./grpjids.json')
-                  const items = JSON.parse(grp)
-                 console.log(items)
-                 for(let i =0; i<items.length;i++){
-                  conn.sendMessage(items[i],(await getgainers()),text)
-                 }
-              })
+      cron.schedule("30 21 * * *", async () => {
+        const grp = fs.readFileSync("./grpjids.json");
+        const items = JSON.parse(grp);
+        console.log(items);
+        for (let i = 0; i < items.length; i++) {
+          conn.sendMessage(items[i], await getgainers(), text);
+        }
+      });
 
       switch (command) {
         case "hello": {

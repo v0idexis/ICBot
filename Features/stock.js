@@ -12,24 +12,25 @@ const daaa = async (sto) => {
       s = `*Stock Details*\n\nSymbol: ${sto}\nCurrency: ${res.currency}\nPrice: ${res.price}`;
     })
     .catch(async (err) => {
-		await yahooStockPrices
-		.getCurrentData(`${sto}.BO`)
-		.then((res) => {
-		  console.log(res);
-		  s = `*Stock Details*\n\nSymbol: ${sto}\nCurrency: ${res.currency}\nPrice: ${res.price}`;
-		})
-		.catch(async (err) => {
-			await yahooStockPrices
-			.getCurrentData(`${sto}`)
-			.then((res) => {
-			  console.log(res);
-			  s = `*Stock Details*\n\nSymbol: ${sto}\nCurrency: ${res.currency}\nPrice: ${res.price}`;
-			})
-			.catch((err) => {
-			  s='The stock specified could not be found in Indian or US exchanges, Please enter a valid ticker symbol';
-			  console.log(s);
-			});
-		});
+      await yahooStockPrices
+        .getCurrentData(`${sto}.BO`)
+        .then((res) => {
+          console.log(res);
+          s = `*Stock Details*\n\nSymbol: ${sto}\nCurrency: ${res.currency}\nPrice: ${res.price}`;
+        })
+        .catch(async (err) => {
+          await yahooStockPrices
+            .getCurrentData(`${sto}`)
+            .then((res) => {
+              console.log(res);
+              s = `*Stock Details*\n\nSymbol: ${sto}\nCurrency: ${res.currency}\nPrice: ${res.price}`;
+            })
+            .catch((err) => {
+              s =
+                "The stock specified could not be found in Indian or US exchanges, Please enter a valid ticker symbol";
+              console.log(s);
+            });
+        });
     });
   return s;
 };

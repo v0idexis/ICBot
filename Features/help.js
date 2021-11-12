@@ -1,5 +1,5 @@
-module.exports.help = async ()=>{
-    const str = ` ⚖️IC BOT⚖️
+module.exports.help = async () => {
+  const str = ` ⚖️IC BOT⚖️
 
     💵Crypto
 note : sends you crypto values
@@ -33,5 +33,5 @@ note : sends you currency codes of different countries
 
     📰News
 note : sends you news according to a topic`;
-    return str
-}
+  return str;
+};

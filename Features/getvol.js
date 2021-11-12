@@ -10,15 +10,21 @@ const scrapeVOL = async () => {
     const $cb = cheerio.load(cboeurl.data);
     const cboevix = $cb('[data-test="instrument-price-last"]').text();
     const cboevixmove = $cb('[data-test="instrument-price-change"]').text();
-    const cboevixperc = $cb('[data-test="instrument-price-change-percent"]').text();
-    const CBOEVIX = "CBOE VIX:\n" + cboevix + " " + cboevixmove + " " + cboevixperc;
+    const cboevixperc = $cb(
+      '[data-test="instrument-price-change-percent"]'
+    ).text();
+    const CBOEVIX =
+      "CBOE VIX:\n" + cboevix + " " + cboevixmove + " " + cboevixperc;
 
     const indurl = await axios.get(url_indvix);
     const $in = cheerio.load(indurl.data);
     const indvix = $in('[data-test="instrument-price-last"]').text();
     const indvixmove = $in('[data-test="instrument-price-change"]').text();
-    const indvixperc = $in('[data-test="instrument-price-change-percent"]').text();
-    const INDIAVIX = "INDIA VIX:\n" + indvix + " " + indvixmove + " " + indvixperc;
+    const indvixperc = $in(
+      '[data-test="instrument-price-change-percent"]'
+    ).text();
+    const INDIAVIX =
+      "INDIA VIX:\n" + indvix + " " + indvixmove + " " + indvixperc;
 
     return [CBOEVIX, INDIAVIX];
   } catch (err) {
@@ -29,4 +35,4 @@ const scrapeVOL = async () => {
 
 scrapeVOL();
 
-module.exports = {scrapeVOL};
+module.exports = { scrapeVOL };
