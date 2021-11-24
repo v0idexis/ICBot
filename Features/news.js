@@ -14,7 +14,7 @@ const getnews = async () => {
     let news = ``;
 
     for (let i = 1; i <= 10; i++) {
-      var article = await res.data.articles[x];
+      var article = await res.data.articles[i];
       var title = await article.title;
       var lurl = await article.url;
       var url = shortUrl.short(lurl, function (err, url) {
