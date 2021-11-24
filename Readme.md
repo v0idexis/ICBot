@@ -26,7 +26,7 @@
  #### **Hosting on Heroku**
  WhatsApp Bot for Traders and Investors
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/v0idexis/ICBot/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/v0idexis/ICBot/tree/temp)
 
 ## CONTRIBUTION
 If you run into any issues while using the bot or if you want to request any changes or new features, open a new issue to let us know.
