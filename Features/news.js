@@ -16,8 +16,8 @@ const getnews = async () => {
     for (let i = 1; i <= 10; i++) {
       var article = await res.data.articles[i];
       var title = await article.title;
-      var lurl = await article.url;
-      var url = await shortUrl.short(lurl);
+      var lourl = await article.url;
+      var url = await shortUrl.short(lourl);
       });
       news += `${title}\nlink : ${url}\n\n`;
     }
