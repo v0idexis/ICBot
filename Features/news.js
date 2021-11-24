@@ -1,22 +1,27 @@
 const axios = require("axios");
+const shortUrl = require("node-url-shortener");
 const newsapi = process.env.NEWS_API;
-const api =
-  `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
+const api = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
 
 const getnews = async () => {
   try {
     const res = await axios.get(api);
     const data = await res.data;
-    const article = await res.data.articles[1];
-    const source = await article.source.name;
-    const title = await article.title;
-    const url = await article.url;
-    const img = await article.urlToImage;
-    const publised = await article.publisedAt;
-    // console.log(article)
-    let news = `${title}
-        link to news : ${url}
-        published at : ${publised}`;
+
+    const article1 = await res.data.articles[1];
+    const img = await article1.urlToImage;
+
+    let news = ``;
+
+    for (let i = 1; i <= 10; i++) {
+      var article = await res.data.articles[x];
+      var title = await article.title;
+      var lurl = await article.url;
+      var url = shortUrl.short(lurl, function (err, url) {
+        console.log(url);
+      });
+      news += `${title}\nlink : ${url}\n\n`;
+    }
     return [news, img];
   } catch (error) {
     console.error(error);
