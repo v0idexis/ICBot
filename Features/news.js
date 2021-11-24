@@ -18,7 +18,6 @@ const getnews = async () => {
       var title = await article.title;
       var lourl = await article.url;
       var url = await shortUrl.short(lourl);
-      });
       news += `${title}\nlink : ${url}\n\n`;
     }
     return [news, img];
