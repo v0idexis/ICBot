@@ -1,9 +1,11 @@
 const axios = require("axios");
+const opwethapi = process.env.OPWETH_API;
+
 let weather = async (args) => {
   if (!args[0]) throw " please provide place or location name";
   try {
     const response = axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`
+      `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=${opwethapi}`
     );
     const res = await response;
     const name = res.data.name;

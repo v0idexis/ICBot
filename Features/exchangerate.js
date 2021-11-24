@@ -1,4 +1,5 @@
 const axios = require("axios");
+const alphaapi = process.env.ALPHA_API;
 
 let exr = async (args) => {
   if (!args[0]) throw " provide atleast two arguemnet";
@@ -6,7 +7,7 @@ let exr = async (args) => {
 
   try {
     let api = axios.get(
-      `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${args[0]}&to_currency=${args[1]}&apikey=RU7JT201657SUB20`
+      `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${args[0]}&to_currency=${args[1]}&apikey=${alphaapi}`
     );
     let body = await api;
     let Data = body.data;

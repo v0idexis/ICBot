@@ -7,7 +7,20 @@
   
       "env": {
           "DATABASE_URL": {
-              "description": "A secret String for Postgres Connection.(Required)"
+              "description": "Postgres Connection url",
+              "required": true
+          },
+          "ALPHA_API": {
+              "description": "Alpha Vantage API Key",
+              "required": true
+          },
+          "OPWETH_API": {
+              "description": "Open Weather Map API Key",
+              "required": true
+          },
+          "NEWS_API": {
+              "description": "Newsapi.org API Key",
+              "required": true
           }
       },
   

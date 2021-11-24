@@ -1,6 +1,7 @@
 const axios = require("axios");
+const newsapi = process.env.NEWS_API;
 const api =
-  "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a7eac679277542249131f57f759e5eed";
+  `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
 
 const getnews = async () => {
   try {
