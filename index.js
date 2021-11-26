@@ -43,6 +43,7 @@ const getgainers = require("./Features/gainers");
 const chalk = require("chalk");
 const cron = require("node-cron");
 const EventHandler = require('./Handlers/eventHandler');
+const { getlosers } = require('./Features/losers.js');
 //Function section
 async function fetchauth() {
   try {
@@ -78,9 +79,10 @@ const getGroupAdmins = (participants) => {
 };
 const prefix = "/";
 //MAIN Function
+ const conn = new WAConnection();
 async function main() {
   // LOADING SESSION
-  const conn = new WAConnection();
+ 
   conn.logger.level = "warn";
   conn.on("qr", (qr) => {
     console.log("SCAN THE ABOVE QR CODE TO LOGIN!");
@@ -446,6 +448,14 @@ async function main() {
           reply("successfully enabled");
           break;
         }
+        
+        case 'gainers' : {
+         reply(await getgainers());
+        }
+          
+        case 'losers' : {
+         reply(await getlosers());
+        }
 
         /////////////// ADMIN COMMANDS \\\\\\\\\\\\\\\
 
@@ -587,3 +597,5 @@ async function main() {
   });
 }
 main();
+
+module.exports = { conn }
