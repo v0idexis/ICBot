@@ -42,6 +42,7 @@ const { getnews } = require("./Features/news");
 const getgainers = require("./Features/gainers");
 const chalk = require("chalk");
 const cron = require("node-cron");
+const EventHandler = require('./Handlers/eventHandler');
 //Function section
 async function fetchauth() {
   try {
@@ -142,32 +143,7 @@ async function main() {
   }
   console.log(chalk.blueBright(`CONNECTED AS ${conn.user.name}`));
 
-  conn.on("group-participants-update", async (event) => {
-    try {
-      const mdata = await conn.groupMetadata(event.jid);
-      const num = event.participants[0];
-      const num_split = `${num.split("@s.whatsapp.net")[0]}`;
-      if (event.action == "add") {
-        console.log("Joined: ", num);
-        console.log(num, num_split, event.participants);
-        conn.sendMessage(
-          event.jid,
-          "welcome" + "@" + num_split,
-          MessageType.text,
-          { contextInfo: { mentionedJid: [...event.participants] } }
-        );
-      } else if (event.action == "remove") {
-        let text = `*@${
-          event.participants[0].split("@")[0]
-        }* has left the chat 👋`;
-        conn.sendMessage(event.jid, text, MessageType.text, {
-          contextInfo: { mentionedJid: [num] },
-        });
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  });
+  conn.on('group-participants-update',EventHandler);
 
   conn.on("chat-update", async (mek) => {
     try {
