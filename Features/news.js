@@ -1,5 +1,7 @@
 const axios = require("axios");
-const newsapi = process.env.NEWS_API;
+var TinyURL = require("tinyurl");
+// const newsapi = process.env.NEWS_API;
+const newsapi = "a7eac679277542249131f57f759e5eed";
 const api = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
 
 const getnews = async () => {
@@ -14,9 +16,14 @@ const getnews = async () => {
 
     for (let i = 1; i <= 10; i++) {
       var article = await res.data.articles[i];
-      var title = await article.title;
-      var url = await article.url;
-      news += `${title}\nlink : ${url}\n\n`;
+      var a_title = await article.title;
+      var t_url = await article.url;
+      var a_url = await TinyURL.shorten(t_url);
+      if (i <= 9) {
+        news += `${a_title}\nlink : ${a_url}\n\n`;
+      } else {
+        news += `${a_title}\nlink : ${a_url}`;
+      }
     }
     return [news, img];
   } catch (error) {

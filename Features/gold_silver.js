@@ -19,7 +19,7 @@ let gold = async () => {
       .html();
     const MCX = $(".boxyWrap").find(".mcx").html().replace("<br>", "");
 
-    const rate = `${siteHeading}\n ${MCX} ${Gold24_key} : ${Gold24_price}\n${Gold22_key}:${Gold22_price}/n last refreshed : ${Last_Refreshed} `;
+    const rate = `${siteHeading}\n${MCX} ${Gold24_key} : ${Gold24_price}\n${Gold22_key} : ${Gold22_price}\nLast Refreshed : ${Last_Refreshed}`;
     //  conn.reply(m.chat,`${siteHeading}\n ${MCX} ${Gold24_key} : ${Gold24_price}\n${Gold22_key}:${Gold22_price}/n last refreshed : ${Last_Refreshed} `,m)
     return rate;
   } catch (e) {
@@ -45,7 +45,7 @@ let silver = async () => {
     const perKilo = $(".boxyWrap").find(".last").find(".wd50").html();
     const perKiloPrice = $(".boxyWrap").find(".last").find(".right").html();
 
-    let srate = `${sitetitle}\n ${perGram} : ${perGramprice}\n${perKilo}:${perKiloPrice}/n last refreshed : ${LastRefreshed} `;
+    let srate = `${sitetitle}\n ${perGram} : ${perGramprice}\n${perKilo} : ${perKiloPrice}\nLast Refreshed : ${LastRefreshed}`;
     return srate;
 
     // conn.reply(m.chat,`${sitetitle}\n ${perGram} : ${perGramprice}\n${perKilo}:${perKiloPrice}/n last refreshed : ${LastRefreshed} `,m)

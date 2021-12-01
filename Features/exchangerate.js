@@ -2,8 +2,8 @@ const axios = require("axios");
 const alphaapi = process.env.ALPHA_API;
 
 let exr = async (args) => {
-  if (!args[0]) throw " provide atleast two arguemnet";
-  if (!args[1]) throw " provide atleast two arguemnet";
+  if (!args[0]) throw "Please enter atlest two currency codes";
+  if (!args[1]) throw "Please enter atlest two currency codes";
 
   try {
     let api = axios.get(
@@ -18,17 +18,18 @@ let exr = async (args) => {
     let to_currencyCODE = Realtime_EXR["3. To_Currency Code"];
     let to_currencyfullname = Realtime_EXR["4. To_Currency Name"];
     let exchangeRate = Realtime_EXR["5. Exchange Rate"];
+    exchangeRate = exchangeRate.toFixed(4);
     let lastRefreshed = Realtime_EXR["6. Last Refreshed"];
     let timeZone = Realtime_EXR["7. Time Zone"];
     let bidPrice = Realtime_EXR["8. Bid Price"];
     let AskPrice = Realtime_EXR["9. Ask Price"];
 
-    let msg = ` Exchange Rate : ${From_currencyCODE} to ${to_currencyCODE} \n exchanageRate is ${exchangeRate} ${to_currencyfullname}
+    let msg = `*${From_currencyCODE}* To *${to_currencyCODE}*\nExchanage Rate:${exchangeRate} ${to_currencyfullname}
 last refreshed : ${lastRefreshed}`;
     return msg;
   } catch {
     // console.log(e)
-    return `wrong country code see /currencycodes`;
+    return `Wrong currency code check /currencycodes for a list of currency codes`;
   }
 };
 
@@ -203,10 +204,6 @@ XPT Platinum Ounce
 YER Yemeni Rial
 ZAR South African Rand
 ZMW Zambian Kwacha
-ZWL Zimbabwean Dollar
-
-
-
-`;
+ZWL Zimbabwean Dollar`;
 
 module.exports = { exr, currencycodes };

@@ -30,6 +30,7 @@
     "node-cron": "^3.0.0",
     "pg": "^8.7.1",
     "qr-image": "^3.2.0",
+    "tinyurl": "^1.1.7",
     "wa-sticker-formatter": "^4.0.14",
     "yahoo-stock-prices": "^1.1.0"
   },

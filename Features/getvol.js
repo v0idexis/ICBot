@@ -29,7 +29,7 @@ const scrapeVOL = async () => {
     return [CBOEVIX, INDIAVIX];
   } catch (err) {
     console.error(err);
-    console.log("Volatility is Down");
+    console.log("Unable to retrieve data, please try again later.");
   }
 };
 
