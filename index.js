@@ -308,7 +308,7 @@ async function main() {
           const imgurl = (await getnews())[1];
           await conn.sendMessage(from, { url: imgurl }, image, {
             mimetype: Mimetype.png,
-            caption: news + "\n~ICBot",
+            caption: news,
           });
           break;
         }
@@ -347,8 +347,8 @@ async function main() {
           break;
         }
         case "exr": {
-          if (!args[0]) reply(" provide atleast two arguement");
-          if (args[0] && !args[1]) reply(" provide secound arguement");
+          if (!args[0]) reply("Please enter atlest two currency codes");
+          if (args[0] && !args[1]) reply("Please enter the second currency code");
           const arguement = args;
           const data = await exr(arguement);
           reply(data);

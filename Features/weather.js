@@ -16,7 +16,7 @@ let weather = async (args) => {
     const Maximum_Temperature = res.data.main.temp_max + "°C";
     const Humidity = res.data.main.humidity + "%";
     const Wind = res.data.wind.speed + " km/h";
-    const wea = `🗺️ *${name}, ${Country}*\n☁️ Weather: ${Weather}\n🌡️ Temp: ${Temperature}\n⬇️ Min: ${Minimum_Temperature}\n⬆️ Maximum Temp: ${Maximum_Temperature}\n💧 Humidity: ${Humidity}\n🍃 Wind: ${Wind}`;
+    const wea = `🗺️ *${name}, ${Country}*\n☁️ Weather: ${Weather}\n🌡️ Temp: ${Temperature}\n⬇️ Min: ${Minimum_Temperature}\n⬆️ Max: ${Maximum_Temperature}\n💧 Humidity: ${Humidity}\n🍃 Wind: ${Wind}`;
     return wea;
   } catch (e) {
     return "The location you entered could not be found, please try again";
