@@ -1,5 +1,5 @@
 const axios = require("axios");
-const alphaapi = "RU7JT201657SUB20"; //process.env.ALPHA_API;
+const alphaapi = process.env.ALPHA_API;
 
 let exr = async (args) => {
   if (!args[0]) throw "Please enter atlest two currency codes";
@@ -25,14 +25,12 @@ let exr = async (args) => {
     let AskPrice = Realtime_EXR["9. Ask Price"];
 
     let msg = `*${From_currency_fullname}* To *${to_currencyfullname}*\n\nExchanage Rate\n*1 ${From_currencyCODE} = ${exchangeRate} ${to_currencyCODE}*\n\nlast refreshed : ${lastRefreshed}`;
-    console.log(msg); //testing
     return msg;
   } catch {
-    // console.log(e)
     return `Wrong currency code check /currencycodes for a list of currency codes`;
   }
 };
-exr(["USD", "INR"]); //temoporary
+
 let currencycodes = `
 AED United Arab Emirates Dirham
 AFN Afghan Afghani
