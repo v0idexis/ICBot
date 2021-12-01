@@ -1,14 +1,12 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const goldURL = "https://www.policybazaar.com/gold-rate/";
+const silverURL = "https://www.policybazaar.com/silver-rate/";
 
 let gold = async () => {
-  const url = "https://www.policybazaar.com/gold-rate/";
-
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(goldURL);
     const $ = cheerio.load(data);
-
-    const siteHeading = await $("title").text();
     const Gold24_key = $(".boxyWrap").find(".last").find(".wd50").html();
     const Gold24_price = $(".boxyWrap").find(".last").find(".right").html();
     const Gold22_key = $(".boxyWrap").find(".flatgray").find(".wd50").html();
@@ -17,17 +15,13 @@ let gold = async () => {
       .find(".goldyBox")
       .find(".lastUpdate")
       .html();
-    const MCX = $(".boxyWrap").find(".mcx").html().replace("<br>", "");
 
-    const rate = `${siteHeading}\n${MCX} ${Gold24_key} : ${Gold24_price}\n${Gold22_key} : ${Gold22_price}\nLast Refreshed : ${Last_Refreshed}`;
-    //  conn.reply(m.chat,`${siteHeading}\n ${MCX} ${Gold24_key} : ${Gold24_price}\n${Gold22_key}:${Gold22_price}/n last refreshed : ${Last_Refreshed} `,m)
+    const rate = `*Gold Price in India, today*\n\n${Gold24_key} : ${Gold24_price}\/tola\n${Gold22_key} : ${Gold22_price}\/tola\n1 tola = 10 grams\n\nLast Refreshed : ${Last_Refreshed}`;
     return rate;
   } catch (e) {
     console.error(e);
   }
 };
-
-const silverURL = "https://www.policybazaar.com/silver-rate/";
 
 let silver = async () => {
   try {
@@ -45,10 +39,8 @@ let silver = async () => {
     const perKilo = $(".boxyWrap").find(".last").find(".wd50").html();
     const perKiloPrice = $(".boxyWrap").find(".last").find(".right").html();
 
-    let srate = `${sitetitle}\n ${perGram} : ${perGramprice}\n${perKilo} : ${perKiloPrice}\nLast Refreshed : ${LastRefreshed}`;
+    let srate = `*Silver Price in India, today*\n\n1 gram : ${perGramprice}\n1 Kg : ${perKiloPrice}\n\nLast Refreshed : ${LastRefreshed}`;
     return srate;
-
-    // conn.reply(m.chat,`${sitetitle}\n ${perGram} : ${perGramprice}\n${perKilo}:${perKiloPrice}/n last refreshed : ${LastRefreshed} `,m)
   } catch (error) {
     return error;
     console.log(error);
