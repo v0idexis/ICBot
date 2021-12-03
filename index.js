@@ -286,7 +286,7 @@ async function main() {
         for (let i = 0; i < items.length; i++) {
           conn.sendMessage(items[i], await getgainers(), text);
         }
-      },,{scheduled:true,timezone:'Asia/Kolkata'});
+      },{scheduled:true,timezone:'Asia/Kolkata'});
 
       switch (command) {
         case "hello": {
