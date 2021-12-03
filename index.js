@@ -42,8 +42,8 @@ const { getnews } = require("./Features/news");
 const getgainers = require("./Features/gainers");
 const chalk = require("chalk");
 const cron = require("node-cron");
-const EventHandler = require('./Handlers/eventHandler');
-const  getlosers  = require('./Features/losers.js');
+const EventHandler = require("./Handlers/eventHandler");
+const getlosers = require("./Features/losers.js");
 //Function section
 async function fetchauth() {
   try {
@@ -79,10 +79,10 @@ const getGroupAdmins = (participants) => {
 };
 const prefix = "/";
 //MAIN Function
- const conn = new WAConnection();
+const conn = new WAConnection();
 async function main() {
   // LOADING SESSION
- 
+
   conn.logger.level = "warn";
   conn.on("qr", (qr) => {
     console.log("SCAN THE ABOVE QR CODE TO LOGIN!");
@@ -145,7 +145,7 @@ async function main() {
   }
   console.log(chalk.blueBright(`CONNECTED AS ${conn.user.name}`));
 
-  conn.on('group-participants-update',EventHandler);
+  conn.on("group-participants-update", EventHandler);
 
   conn.on("chat-update", async (mek) => {
     try {
@@ -279,14 +279,18 @@ async function main() {
       }
 
       // daily 9:30 pm
-      cron.schedule("30 21 * * *", async () => {
-        const grp = fs.readFileSync("./grpjids.json");
-        const items = JSON.parse(grp);
-        console.log(items);
-        for (let i = 0; i < items.length; i++) {
-          conn.sendMessage(items[i], await getgainers(), text);
-        }
-      },{scheduled:true,timezone:'Asia/Kolkata'});
+      cron.schedule(
+        "30 21 * * *",
+        async () => {
+          const grp = fs.readFileSync("./grpjids.json");
+          const items = JSON.parse(grp);
+          console.log(items);
+          for (let i = 0; i < items.length; i++) {
+            conn.sendMessage(items[i], await getgainers(), text);
+          }
+        },
+        { scheduled: true, timezone: "Asia/Kolkata" }
+      );
 
       switch (command) {
         case "hello": {
@@ -348,7 +352,8 @@ async function main() {
         }
         case "exr": {
           if (!args[0]) reply("Please enter atlest two currency codes");
-          if (args[0] && !args[1]) reply("Please enter the second currency code");
+          if (args[0] && !args[1])
+            reply("Please enter the second currency code");
           const arguement = args;
           const data = await exr(arguement);
           reply(data);
@@ -448,13 +453,15 @@ async function main() {
           reply("successfully enabled");
           break;
         }
-        
-        case 'gainers' : {
-         reply(await getgainers());
+
+        case "gainers": {
+          var gainersval = await getgainers();
+          reply(`${gainersval}`);
         }
-          
-        case 'losers' : {
-         reply(await getlosers());
+
+        case "losers": {
+          var losersval = await getlosers();
+          reply(`${losersval}`);
         }
 
         /////////////// ADMIN COMMANDS \\\\\\\\\\\\\\\
@@ -598,4 +605,4 @@ async function main() {
 }
 main();
 
-module.exports = { conn }
+module.exports = { conn };
