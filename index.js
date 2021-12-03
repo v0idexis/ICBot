@@ -323,14 +323,13 @@ async function main() {
           break;
         }
         case "crypto_mmi": {
+          const s2 = await CryptoMmi();
           await conn.sendMessage(
             from,
             { url: "https://alternative.me/crypto/fear-and-greed-index.png" },
             image,
-            { mimetype: Mimetype.png, caption: "~ICBot" }
-          );
-          const s2 = await CryptoMmi();
-          reply(`${s2}`);
+            { mimetype: Mimetype.png, caption: s2 }
+          );          
           break;
         }
 
@@ -456,15 +455,15 @@ async function main() {
 
         case "gainers": {
           const gainersval = await getgainers();
-          // conn.sendMessage(from, gainersval, MessageType.text);
-          reply(`${gainersval}`);
+          conn.sendMessage(from, gainersval, MessageType.text);
+          // reply(`${gainersval}`);
           break;
         }
 
         case "losers": {
           const losersval = await getlosers();
-          // conn.sendMessage(from, losersval, MessageType.text);
-          reply(`${losersval}`);
+          conn.sendMessage(from, losersval, MessageType.text);
+          // reply(`${losersval}`);
           break;
          
         }
@@ -511,8 +510,10 @@ async function main() {
           }
           break;
 
-        case "kick":
+        case "kick": 
+          break;
         case "remove":
+          break;
         case "ban":
           if (!isGroup) return;
           if (!isGroupAdmins) return;
