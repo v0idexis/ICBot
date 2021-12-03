@@ -2,7 +2,11 @@ const axios = require("axios");
 
 const getlosers = async () => {
   try {
-    const Data = await axios.get("https://www1.nseindia.com/live_market/dynaContent/live_analysis/losers/niftyLosers1.json").then((response) => {
+    const Data = await axios
+      .get(
+        "https://www1.nseindia.com/live_market/dynaContent/live_analysis/losers/niftyLosers1.json"
+      )
+      .then((response) => {
         return response.data;
       });
 
