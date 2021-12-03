@@ -26,7 +26,7 @@ const getlosers = async () => {
     return msg;
   } catch (error) {
     console.log(error);
-    return "sorry something went wrong";
+    return "Something went wrong, please try again later.";
   }
 };
 
