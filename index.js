@@ -43,7 +43,7 @@ const getgainers = require("./Features/gainers");
 const chalk = require("chalk");
 const cron = require("node-cron");
 const EventHandler = require('./Handlers/eventHandler');
-const { getlosers } = require('./Features/losers.js');
+const  getlosers  = require('./Features/losers.js');
 //Function section
 async function fetchauth() {
   try {
