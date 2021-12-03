@@ -456,16 +456,17 @@ async function main() {
 
         case "gainers": {
           var gainersval = await getgainers();
-          conn.sendMessage(from, gainersval, MessageType.text);
+          // conn.sendMessage(from, gainersval, MessageType.text);
+          reply(`${gainersval}`);
           break;
-          // reply(`${gainersval}`);
         }
 
         case "losers": {
           var losersval = await getlosers();
-          conn.sendMessage(from, losersval, MessageType.text);
+          // conn.sendMessage(from, losersval, MessageType.text);
+          reply(`${losersval}`);
           break;
-          // reply(`${losersval}`);
+         
         }
 
         /////////////// ADMIN COMMANDS \\\\\\\\\\\\\\\
