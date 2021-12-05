@@ -454,16 +454,16 @@ async function main() {
         }
 
         case "gainers": {
-          const gainersval = await getgainers();
-          conn.sendMessage(from, gainersval, MessageType.text);
-          // reply(`${gainersval}`);
+          const gainersval = (await getgainers());
+          // conn.sendMessage(from, gainersval, MessageType.text);
+          reply(gainersval);
           break;
         }
 
         case "losers": {
-          const losersval = await getlosers();
-          conn.sendMessage(from, losersval, MessageType.text);
-          // reply(`${losersval}`);
+          const losersval = (await getlosers());
+          // conn.sendMessage(from, losersval, MessageType.text);
+          reply(losersval);
           break;
          
         }
