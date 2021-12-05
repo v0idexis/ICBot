@@ -456,9 +456,9 @@ async function main() {
         case "gainers": {
           const gainersval = (await getgainers());
           // conn.sendMessage(from, gainersval, MessageType.text);
-          // reply(gainersval);
-          console.log(gainersval);
-          reply("Gainers working");
+          reply(gainersval);
+          // console.log(gainersval);
+          // reply("Gainers working");
           break;
         }
 
