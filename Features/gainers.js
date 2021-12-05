@@ -29,5 +29,10 @@ const getgainers = async () => {
     return "Something went wrong, please try again later.";
   }
 };
-console.log(getgainers()) 
+console.log(getgainers());
+// async function main() {
+//   var lol = await getgainers();
+//   console.log(lol);
+// } 
+// main();
 module.exports = getgainers;

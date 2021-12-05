@@ -39,7 +39,7 @@ const path = require("path");
 const { exr, currencycodes } = require("./Features/exchangerate");
 const { gold, silver } = require("./Features/gold_silver");
 const { getnews } = require("./Features/news");
-const getgainers = require("./Features/gainers");
+const getgainers = require("./Features/gainers.js");
 const chalk = require("chalk");
 const cron = require("node-cron");
 const EventHandler = require("./Handlers/eventHandler");
@@ -456,8 +456,7 @@ async function main() {
         case "gainers": {
           const gainersval = (await getgainers());
           // conn.sendMessage(from, gainersval, MessageType.text);
-          console.log(gainersval);
-          reply(gainersval);
+          // reply(gainersval);
           reply("Gainers working");
           break;
         }
@@ -465,8 +464,7 @@ async function main() {
         case "losers": {
           const losersval = (await getlosers());
           // conn.sendMessage(from, losersval, MessageType.text);
-          reply(losersval);
-          reply(losersval);
+          // reply(losersval);
           reply("Losers working");
           break;
          
