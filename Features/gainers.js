@@ -17,10 +17,10 @@ const getgainers = async () => {
       const array = G[i];
       const lastp = Number(array.ltp.replace(/\,/g, ""));
       const previousprice = Number(array.previousPrice.replace(/\,/g, ""));
-      var changev = lastp - previousprice;
-      changev = changev.toFixed(2);
-      let message = `📛Name : *${array.symbol}*\n🔺Change : *${changev}* *(${array.netPrice}%)*`;
-      text.push(message);
+      var change = lastp - previousprice;
+      change = change.toFixed(2);
+      let message = `📛Name : *${array.symbol}*\n🔖change : *${array.netPrice}%*\n🏷Change : *${change}*`
+	text.push(message);
     }
     const msg = text.join("\n\n");
     return msg;
