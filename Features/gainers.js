@@ -29,5 +29,5 @@ const getgainers = async () => {
     return "Something went wrong, please try again later.";
   }
 };
-
+console.log(getgainers()) 
 module.exports = getgainers;
