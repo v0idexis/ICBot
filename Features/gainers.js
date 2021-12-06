@@ -9,7 +9,7 @@ const getgainers = async () => {
       .then((response) => {
         return response.data;
       });
-console.log(Data)
+
     const G = Data.data;
     let text = [];
     text.push("*Today's Gainers (NSE)* 📈⬆️");
