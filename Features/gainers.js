@@ -7,8 +7,8 @@ const getgainers = async () => {
         "https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json"
       ,{
 proxy : {
-host : 92.222.153.172,
-port :3128
+host : "92.222.153.172",
+port :"3128"
 }
 })
       .then((response) => {
