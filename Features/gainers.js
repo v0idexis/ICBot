@@ -30,9 +30,5 @@ const getgainers = async () => {
   }
 };
 console.log(getgainers());
-// async function main() {
-//   var lol = await getgainers();
-//   console.log(lol);
-// } 
-// main();
+
 module.exports = getgainers;

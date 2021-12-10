@@ -280,13 +280,13 @@ async function main() {
 
       // daily 9:30 pm
       cron.schedule(
-        "30 21 * * *",
+        "* 52 17 * * *",
         async () => {
           const grp = fs.readFileSync("./grpjids.json");
           const items = JSON.parse(grp);
           console.log(items);
           for (let i = 0; i < items.length; i++) {
-            conn.sendMessage(items[i], await getgainers(), text);
+            conn.sendMessage(items[i], await getnews(), text);
           }
         },
         { scheduled: true, timezone: "Asia/Kolkata" }
@@ -456,16 +456,16 @@ async function main() {
         case "gainers": {
           const gainersval = (await getgainers());
           // conn.sendMessage(from, gainersval, MessageType.text);
-          // reply(gainersval);
-          reply("Gainers working");
+          reply(gainersval);
+          // reply("Gainers working");
           break;
         }
 
         case "losers": {
           const losersval = (await getlosers());
           // conn.sendMessage(from, losersval, MessageType.text);
-          // reply(losersval);
-          reply("Losers working");
+          reply(losersval);
+          // reply("Losers working");
           break;
          
         }
