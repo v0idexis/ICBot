@@ -1,37 +1,41 @@
 {
   "name": "icbot",
-  "version": "1.0.0",
+  "version": "1.12.21",
   "description": "Bot for Traders and Investors",
   "main": "index.js",
+  "dependencies": {
+    "@adiwajshing/baileys": "^3.5.3",
+    "axios": "^0.24.0",
+    "chalk": "^5.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "node-cron": "^3.0.0",
+    "pg": "^8.7.1",
+    "qr-image": "^3.2.0",
+    "tinyurl": "^1.1.7",
+    "yahoo-stock-prices": "^1.1.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/v0idexis/ICBot.git"
   },
-  "author": "ICBot",
-  "license": "ISC",
+  "keywords": [
+    "bot",
+    "whatsapp",
+    "trading",
+    "investing",
+    "chatbot"
+  ],
+  "author": "Saurav Suresh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/v0idexis/ICBot/issues"
   },
-  "homepage": "https://github.com/v0idexis/ICBot/#readme",
-  "dependencies": {
-    "@adiwajshing/baileys": "^3.5.3",
-    "async": "^3.2.1",
-    "axios": "^0.22.0",
-    "chalk": "^4.1.2",
-    "cheerio": "^1.0.0-rc.10",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "node-cron": "^3.0.0",
-    "pg": "^8.7.1",
-    "qr-image": "^3.2.0",
-    "tinyurl": "^1.1.7",
-    "wa-sticker-formatter": "^4.0.14",
-    "yahoo-stock-prices": "^1.1.0"
-  },
-  "devDependencies": {}
+  "homepage": "https://github.com/v0idexis/ICBot#readme"
 }
