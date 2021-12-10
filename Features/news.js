@@ -1,7 +1,6 @@
 const axios = require("axios");
 var TinyURL = require("tinyurl");
-// const newsapi = process.env.NEWS_API;
-const newsapi = "a7eac679277542249131f57f759e5eed";
+const newsapi = process.env.NEWS_API;
 const api = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
 
 const getnews = async () => {

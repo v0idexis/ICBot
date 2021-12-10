@@ -280,7 +280,7 @@ async function main() {
 
       // daily 9:30 pm
       cron.schedule(
-        "* 52 17 * * *",
+        "30 9 * * *",
         async () => {
           const grp = fs.readFileSync("./grpjids.json");
           const items = JSON.parse(grp);
