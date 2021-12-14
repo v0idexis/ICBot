@@ -2,9 +2,17 @@ const axios = require("axios");
 
 const getgainers = async () => {
   try {
+     const headers = {
+        'Accept': '*/*',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Host': 'www1.nseindia.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246',
+        'X-Requested-With': 'XMLHttpRequest'
+}
     const Data = await axios
       .get(
-        "https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json"
+        "https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json",
+    { headers: headers }
       )
       .then((response) => {
         return response.data;
