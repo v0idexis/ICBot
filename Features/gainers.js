@@ -11,14 +11,14 @@ const getgainers = async () => {
 }
     const Data = await axios
       .get(
-        "https://www.nseindia.com/api/live-analysis-variations?index=gainers",
+        "https://app.zenscrape.com/api/v1/get?apikey=828458c0-5f3d-11ec-8b46-9b2b76a91cc0&url=https://www1.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json",
     { headers: headers }
       )
       .then((response) => {
         return response.data;
       });
 
-    const G = Data.NIFTY.data;
+    const G = Data.data;
 console.log(G);
     let text = [];
     text.push("*Today's Gainers (NSE)* 📈⬆️");
