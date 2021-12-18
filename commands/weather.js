@@ -4,7 +4,7 @@ class Command {
 this.command = 'weather'
     }
     run = async(M,args)=>{
-        console.log(args,'commmmmmmmmm')
+        
 if(!args[0]) throw M.reply(" please provide place or location name")
         
 try {
@@ -28,9 +28,7 @@ M.reply(wea)
     M.reply('couldn\' found the place')
 }
 
-    //    M.reply('hellow this is weather')
+  
     }
 }
-// const c = new Command()
-// console.log(c)
 module.exports = Command
