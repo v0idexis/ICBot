@@ -44,10 +44,11 @@ const chalk = require("chalk");
 const cron = require("node-cron");
 const EventHandler = require("./Handlers/eventHandler");
 const getlosers = require("./Features/losers.js");
+const table = process.env.SESSION;
 //Function section
 async function fetchauth() {
   try {
-    auth_result = await db.query("select * from auth;");
+    auth_result = await db.query(`select * from ${table};`);
     console.log("Fetching login data...");
     auth_row_count = await auth_result.rowCount;
     if (auth_row_count == 0) {
@@ -65,7 +66,7 @@ async function fetchauth() {
   } catch {
     console.log("Creating database...");
     await db.query(
-      "CREATE TABLE auth(clientID text, serverToken text, clientToken text, encKey text, macKey text);"
+      `CREATE TABLE ${table}(clientID text, serverToken text, clientToken text, encKey text, macKey text);`
     );
     await fetchauth();
   }
@@ -80,6 +81,21 @@ const getGroupAdmins = (participants) => {
 const prefix = "/";
 //MAIN Function
 const conn = new WAConnection();
+module.exports = {conn}
+const commands = new Map();
+const loadcommands = async() => {
+    console.log(chalk.blueBright('loading commands...'))
+    const paath = path.join(__dirname,'commands')
+    const files =fs.readdirSync(paath)
+    files.map(async (file)=>{
+                const fullpath = `./commands/${file}`
+                const cmd = new (require(fullpath))
+                console.log(cmd)
+                console.log(chalk.cyan('loaded'),chalk.yellow(file),chalk.magenta('from'),chalk.green(fullpath))
+                commands.set(cmd.command,cmd.run)
+            })
+}
+loadcommands();
 async function main() {
   // LOADING SESSION
 
@@ -106,7 +122,7 @@ async function main() {
     console.log("Connecting...");
   });
   conn.on("open", () => {
-    console.clear();
+   // console.clear();
     console.log("Connected!");
   });
   await conn.connect({ timeoutMs: 30 * 1000 });
@@ -119,7 +135,7 @@ async function main() {
   // INSERT / UPDATE LOGIN DATA
   if (auth_row_count == 0) {
     console.log("Inserting login data...");
-    db.query("INSERT INTO auth VALUES($1,$2,$3,$4,$5);", [
+    db.query(`INSERT INTO ${table} VALUES($1,$2,$3,$4,$5);`, [
       load_clientID,
       load_serverToken,
       load_clientToken,
@@ -131,7 +147,7 @@ async function main() {
   } else {
     console.log("Updating login data....");
     db.query(
-      "UPDATE auth SET clientid = $1, servertoken = $2, clienttoken = $3, enckey = $4, mackey = $5;",
+      `UPDATE ${table} SET clientid = $1, servertoken = $2, clienttoken = $3, enckey = $4, mackey = $5;`,
       [
         load_clientID,
         load_serverToken,
@@ -291,7 +307,21 @@ async function main() {
         },
         { scheduled: true, timezone: "Asia/Kolkata" }
       );
+      const M ={
+            reply,
+            from,
+            conn,
+            mek,
+            sender:{
+                jid:sender,
+                username
 
+            }
+        }
+if(command == '') return null
+    const run = commands.get(command)
+                    if(!run) return reply('not found')
+            await run(M,args);
       switch (command) {
         case "hello": {
           reply(`hello`);
