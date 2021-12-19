@@ -10,6 +10,10 @@
               "description": "Postgres Connection url",
               "required": true
           },
+          "SESSION" : {
+              "description: "Your session name",
+              "required":true
+          },
           "ALPHA_API": {
               "description": "Alpha Vantage API Key",
               "required": true
