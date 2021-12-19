@@ -2,7 +2,7 @@ const yahooStockPrices = require("yahoo-stock-prices");
 
 class Command {
     constructor(){
-this.command = 'hi' // command goes here
+this.command = 'stock' // command goes here
     }
     run = async(M)=>{
         var s='';
