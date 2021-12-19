@@ -1,7 +1,7 @@
 
 class Command {
     constructor(){
-this.command = 'hi' // command goes here
+this.command = 'help' // command goes here
     }
     run = async(M)=>{
         const str = `  ⚖️IC BOT⚖️
