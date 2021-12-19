@@ -11,8 +11,8 @@
               "required": true
           },
           "SESSION" : {
-              "description: "Your session name",
-              "required":true
+             "description": "Your session name",
+             "required":true
           },
           "ALPHA_API": {
               "description": "Alpha Vantage API Key",
