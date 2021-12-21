@@ -1,1 +1,9 @@
-
+class Command {
+    constructor(){
+this.command = 'example' // command goes here
+    }
+    run = async(M,args)=>{
+       M.reply('hi ') // function goes here
+    }
+}
+module.exports = Command
