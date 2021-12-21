@@ -6,7 +6,7 @@ class Command {
     this.command = "weather";
   }
   run = async (M, args) => {
-    if (!args[0]) throw "Please provide the name of a location";
+    if (!args[0]) throw M.reply("Please enter the name of a location");
     try {
       const response = axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=${opwethapi}`
