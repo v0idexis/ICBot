@@ -4,6 +4,7 @@ const express = require("express");
 const server = express();
 const qrImage = require("qr-image");
 const port = process.env.PORT || 8000;
+
 server.get("/", (req, res) => {
   res.send("ICBot server running...");
 });
@@ -11,7 +12,9 @@ server.listen(port, () => {
   console.clear();
   console.log("\nWeb-server running!\n");
 });
-//import section
+
+//Import section
+
 const {
   WAConnection,
   MessageType,
@@ -27,23 +30,26 @@ const {
   // mentionedJid,
   // processTime,
 } = require("@adiwajshing/baileys");
-// LOAD DB CONNECTION
-const db = require("./database");
+const db = require("./database"); // Load Database connection
 const fs = require("fs");
-const { help } = require("./Features/help");
-const { getPriceCrypto, CryptoMmi } = require("./Features/crypto");
-const { daaa, stockMMI } = require("./Features/stock");
-const weather = require("./Features/weather");
-const { scrapeVOL } = require("./Features/getvol");
 const path = require("path");
-const { exr, currencycodes } = require("./Features/exchangerate");
-const { gold, silver } = require("./Features/gold_silver");
-const { getnews } = require("./Features/news");
-const getgainers = require("./Features/gainers.js");
 const chalk = require("chalk");
 const cron = require("node-cron");
 const EventHandler = require("./Handlers/eventHandler");
-const getlosers = require("./Features/losers.js");
+
+// Import features
+// const { help } = require("./Features/help");
+// const { getPriceCrypto, CryptoMmi } = require("./Features/crypto");
+// const { daaa, stockMMI } = require("./Features/stock");
+// const weather = require("./Features/weather");
+// const { scrapeVOL } = require("./Features/getvol");
+// const { exr, currencycodes } = require("./Features/exchangerate");
+// const { gold, silver } = require("./Features/gold_silver");
+// const { getnews } = require("./Features/news");
+// const getgainers = require("./Features/gainers.js");
+// const getlosers = require("./Features/losers.js");
+
+
 const table = process.env.SESSION;
 //Function section
 async function fetchauth() {
