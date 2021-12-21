@@ -1,4 +1,5 @@
 const axios = require("axios");
+const alphaapi = process.env.ALPHA_API;
 
 class Command {
   constructor() {
