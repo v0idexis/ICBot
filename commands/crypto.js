@@ -1,3 +1,4 @@
+const axios = require('axios');
 class Command {
   constructor() {
     this.command = "crypto"; // command goes here
