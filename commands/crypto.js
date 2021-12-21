@@ -13,7 +13,7 @@ class Command {
       .request(mainconfig)
       .then((res) => {
         console.log("here");
-        var cc = coin;
+        var cc = coin[0];
         var cc1 = cc.toUpperCase() + "INR";
         var cc2 = cc.toUpperCase() + "USDT";
         var cc3 = cc.toUpperCase() + "BTC";
