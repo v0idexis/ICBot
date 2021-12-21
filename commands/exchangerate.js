@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 class Command {
   constructor() {
     this.command = "exr"; // command goes here

@@ -1,3 +1,6 @@
+const axios = require("axios");
+const cheerio = require("cheerio");
+
 class Command {
   constructor() {
     this.command = "silverpr"; // command goes here
