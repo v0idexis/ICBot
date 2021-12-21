@@ -3,7 +3,7 @@ class Command {
   constructor() {
     this.command = "crypto"; // command goes here
   }
-  run = async (M) => {
+  run = async (M, coin) => {
     var mainconfig = {
       method: "get",
       url: "https://public.coindcx.com/market_data/current_prices",
@@ -35,7 +35,7 @@ class Command {
       })
       .catch((err) => {
         console.log("not working");
-        t = "catch";
+        t = "Something went wrong, please try again";
       });
     M.reply(t);
   };
