@@ -15,17 +15,17 @@ server.listen(port, () => {
 const {
   WAConnection,
   MessageType,
-  Presence,
-  Mimetype,
-  GroupSettingChange,
-  MessageOptions,
-  WALocationMessage,
-  WA_MESSAGE_STUB_TYPES,
-  ReconnectMode,
-  ProxyAgent,
-  waChatKey,
-  mentionedJid,
-  processTime,
+  // Presence,
+  // Mimetype,
+  // GroupSettingChange,
+  // MessageOptions,
+  // WALocationMessage,
+  // WA_MESSAGE_STUB_TYPES,
+  // ReconnectMode,
+  // ProxyAgent,
+  // waChatKey,
+  // mentionedJid,
+  // processTime,
 } = require("@adiwajshing/baileys");
 // LOAD DB CONNECTION
 const db = require("./database");
@@ -81,20 +81,25 @@ const getGroupAdmins = (participants) => {
 const prefix = "/";
 //MAIN Function
 const conn = new WAConnection();
-module.exports = {conn}
+module.exports = { conn };
 const commands = new Map();
-const loadcommands = async() => {
-    console.log(chalk.blueBright('loading commands...'))
-    const paath = path.join(__dirname,'commands')
-    const files =fs.readdirSync(paath)
-    files.map(async (file)=>{
-                const fullpath = `./commands/${file}`
-                const cmd = new (require(fullpath))
-                console.log(cmd)
-                console.log(chalk.cyan('loaded'),chalk.yellow(file),chalk.magenta('from'),chalk.green(fullpath))
-                commands.set(cmd.command,cmd.run)
-            })
-}
+const loadcommands = async () => {
+  console.log(chalk.blueBright("loading commands..."));
+  const paath = path.join(__dirname, "commands");
+  const files = fs.readdirSync(paath);
+  files.map(async (file) => {
+    const fullpath = `./commands/${file}`;
+    const cmd = new (require(fullpath))();
+    console.log(cmd);
+    console.log(
+      chalk.cyan("loaded"),
+      chalk.yellow(file),
+      chalk.magenta("from"),
+      chalk.green(fullpath)
+    );
+    commands.set(cmd.command, cmd.run);
+  });
+};
 loadcommands();
 async function main() {
   // LOADING SESSION
@@ -122,7 +127,7 @@ async function main() {
     console.log("Connecting...");
   });
   conn.on("open", () => {
-   // console.clear();
+    // console.clear();
     console.log("Connected!");
   });
   await conn.connect({ timeoutMs: 30 * 1000 });
@@ -294,7 +299,7 @@ async function main() {
         console.log("list button yes");
       }
 
-      // daily 9:30 pm
+      // daily 9:30 am
       cron.schedule(
         "30 9 * * *",
         async () => {
@@ -307,21 +312,20 @@ async function main() {
         },
         { scheduled: true, timezone: "Asia/Kolkata" }
       );
-      const M ={
-            reply,
-            from,
-            conn,
-            mek,
-            sender:{
-                jid:sender,
-                username
-
-            }
-        }
-if(command == '') return null
-    const run = commands.get(command)
-                    if(!run) return reply('not found')
-            await run(M,args);
+      const M = {
+        reply,
+        from,
+        conn,
+        mek,
+        sender: {
+          jid: sender,
+          username,
+        },
+      };
+      if (command == "") return null;
+      const run = commands.get(command);
+      if (!run) return reply("not found");
+      await run(M, args);
     } catch (e) {
       console.log("Error : %s", e);
     }
