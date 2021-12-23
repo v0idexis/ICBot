@@ -89,6 +89,7 @@ const prefix = "/";
 const conn = new WAConnection();
 module.exports = { conn };
 const commands = new Map();
+const aliases = new Map();
 const loadcommands = async () => {
   console.log(chalk.blueBright("loading commands..."));
   const paath = path.join(__dirname, "commands");
@@ -104,6 +105,7 @@ const loadcommands = async () => {
       chalk.green(fullpath)
     );
     commands.set(cmd.command, cmd.run);
+    if(cmd.aliases) cmd.aliases.forEach(v =>  aliases.set(v,cmd.run));
   });
 };
 loadcommands();
@@ -329,7 +331,7 @@ async function main() {
         },
       };
       if (command == "") return null;
-      const run = commands.get(command);
+      const run = commands.get(command) || aliases.get(command)
       if (!run) return reply("not found");
       await run(M, args);
     } catch (e) {
