@@ -1,5 +1,6 @@
 const { MessageType } = require("@adiwajshing/baileys");
 const axios = require("axios");
+const get = require('../lib/utils');
 var TinyURL = require("tinyurl");
 const newsapi = process.env.NEWS_API;
 const api = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsapi}`;
@@ -32,7 +33,7 @@ class Command {
           news += `${a_title}\nlink : ${a_url}`;
         }
       }
-      conn.sendMessage(M.from, img, MessageType.image, {
+      conn.sendMessage(M.from, (await get.buffer(img)), MessageType.image, {
         quoted: M.mek,
         caption: news,
       });
