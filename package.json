@@ -18,19 +18,19 @@
   },
   "homepage": "https://github.com/v0idexis/ICBot/#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "^3.5.3",
+    "@adiwajshing/baileys": "^4.1.0",
     "async": "^3.2.3",
     "axios": "^0.22.0",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "node-cron": "^3.0.0",
-    "pg": "^8.7.1",
+    "pg": "^8.7.3",
     "qr-image": "^3.2.0",
     "tinyurl": "^1.1.7",
-    "wa-sticker-formatter": "^4.2.0",
+    "wa-sticker-formatter": "^4.3.2",
     "yahoo-stock-prices": "^1.1.0"
   },
   "devDependencies": {}
